@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- clearInterval()
+        setInterval()   每隔一段时间执行一次
+        clearInterval()
+        clearInterval()
+    -->
+    <h1 id="count">0</h1>
+    <script>
+        window.onload = function(){
+            let count = document.getElementById('count');
+            let a = 0;
+            //返回值是一个number,定时器的唯一标识
+            let num = setInterval(function(){
+                count.innerHTML = ++a;
+                console.log(a);
+                if(a===10){
+                    clearInterval(num)
+                }
+            },500)
+           
+            // 可能打开多个定时器,通过num来区分
+
+        }
+    </script>
+</body>
+</html>

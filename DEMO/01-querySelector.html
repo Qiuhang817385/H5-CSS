@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    获取文档中 id="demo" 的元素：
+    document.querySelector("#demo");
+        
+    获取文档中第一个 <p> 元素：
+    document.querySelector("p");
+
+    获取文档中 class="example" 的第一个元素:
+    document.querySelector(".example");
+
+    获取文档中 class="example" 的第一个 <p> 元素:
+    document.querySelector("p.example");
+
+    获取文档中有 "target" 属性的第一个 <a> 元素：
+    document.querySelector("a[target]");
+
+    <h2>A h2 element</h2>
+    <h3>A h3 element</h3>
+
+    document.querySelector("h2, h3").style.backgroundColor = "red";
+    给第一个元素加上的样式,第一个是h2
+
+    如果h3在前面,那么就给h3元素加上红色样式
+
+    获取文档中 class="example" 的所有元素:
+
+    var x = document.querySelectorAll(".example");
+    x[0].style.backgroundColor = "red";
+
+     -->
+     
+    <p id="demo"> id="demo" 的 p 元素</p>
+    <button onclick="myFunction()">111</button>
+    <script>
+        
+        function myFunction(){
+            document.querySelector("#demo").innerHTML = "hello";
+        }
+    </script>
+</body>
+</html>
