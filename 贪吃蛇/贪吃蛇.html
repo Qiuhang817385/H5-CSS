@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #div1{
+            height: 100px;
+            width: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            //获取元素
+            let div1 = document.getElementById('div1');
+            let speed = 10;
+            
+            //键盘事件,控制元素移动
+            document.onkeydown = function(event){
+                // console.log(event.keyCode);
+                // 37,38,39,40
+                switch(event.keyCode){
+                    case 37:div1.style.left = div1.offsetLeft-speed;break;//左
+                    case 39:div1.style.left = div1.offsetLeft+speed;break;//右
+                    case 38:div1.style.top = div1.offsetTop-speed;break;//上
+                    case 40:div1.style.top = div1.offsetTop+speed;break;//下
+                }
+
+                    
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
