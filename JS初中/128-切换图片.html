@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            
+            // Cannot set property 'src' of null    
+            // 第二次踩坑
+            // 必须写在渲染页面的后面
+            let imgs = document.getElementById("img1");
+            console.log(imgs);
+            let a = 1;
+            
+            let numTime ;//把标识定义到外面就可以所有的作用域看见了
+            var btn1 = document.getElementById('btn01');
+            var btn2 = document.getElementById('btn02');
+            //开始按钮
+            btn1.addEventListener('click',function(){
+                
+                //点击多次以后越来越快
+                //原因:每点击一次,就开启一个定时器,相当于多个定时器来切换这个图片
+                //只希望开启一个
+                
+                //方案  在开启一个定时器之前,把上一个定时器先关闭
+                clearInterval(numTime);
+
+                numTime = setInterval(function () {
+                a = a % 5 + 1;
+                // index = index / length + min;
+                imgs.src = `../img/${a}.jpg`;
+                console.log(a);
+            }, 1000)
+            },false)
+            btn2.addEventListener('click',function(){
+                //clearInterval可以接受任意的参数,刚开始numtime没有定义的时候,是undefined
+                // 但是没有问题 
+                clearInterval(numTime);
+            },false)
+        }
+
+    </script>
+</head>
+
+<body>
+    <img src="../img/1.jpg" alt="" id="img1">
+    <br>
+    <button id="btn01">开始</button>
+    <button id="btn02">停止</button>
+</body>
+
+</html>

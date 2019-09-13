@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            //获取元素
+            let img = document.getElementById('img1');
+            //设置定时器
+            let index = 0;
+            setTimeout(() => {
+                
+                index = index%5+1;//就这一行代码就ok了
+                console.log(index);
+                img.src = `../img/${index}.jpg`;
+            }, 500);
+
+        }
+    </script>
+</head>
+<body>
+    <img src="" alt="" id="img1">
+</body>
+</html>

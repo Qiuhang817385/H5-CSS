@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            //  onkeydown
+            //     onkeyup
+
+
+            //用处  1,移动元素,2,发送子弹然后清除子弹
+
+            // div一般是不能绑定键盘事件的
+            // 键盘事件一般都会绑定给一些获得焦点的对象 onfocus onblur
+
+            document.onkeydown = function(event){
+                //一直不放  会一直触发          
+                //  -第一次会稍微卡一下,防止误操作
+                console.log(event.keyCode);
+
+                // 判断81   q 字符  是否被按下
+                if(event.keyCode === 81){
+                    console.log('q被按下');
+                }
+                // 判断ctrl和q 字符  是否同时被按下
+                //altKey
+                //shiftKey
+                //ctrlKey   返回Boolean
+                if(event.keyCode === 81&&event.ctrlKey){
+                    console.log('同时按下');
+                }
+
+                
+            }
+            document.onkeyup = function(){
+
+            }
+
+            //给input绑定
+            var input = document.getElementsByTagName('input')[0];
+            input.onkeydown = function(event){
+                console.log(event.keyCode);
+                //在文本框输入内容属于onkeydown的默认行为,如果取消默认行为,那么文本不会写到文本框内
+                // return false     取消默认行为
+
+                // 用处 使文本框不能输入数字
+                if(event.keyCode>=48&&event.keyCode<=57){
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text">
+</body>
+</html>

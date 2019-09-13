@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let box1 = document.getElementById('box');
+            // 许多人终其一生都是平凡人,做不出任何成就,你就这样认命了吗
+
+            //开启一个定时器,控制div的移动
+
+            // 设置一个方向
+            let dir = 0;
+            let speed = 10;
+            document.onkeydown = function(event){
+                if(event.ctrlKey){
+                    speed = 30;
+                }else{
+                    speed = 10;
+                }
+                console.log(speed);
+                //修改方向
+                dir = event.keyCode;
+                console.log(dir);
+                
+            }
+            setInterval(function(){
+
+                switch(dir){
+                    case 37:box1.style.left = box1.offsetLeft - speed+'px';break;
+                    case 39:box1.style.left = box1.offsetLeft + speed+'px';break;
+                    case 38:box1.style.top = box1.offsetTop - speed+'px';break;
+                    case 40:box1.style.top = box1.offsetTop + speed+'px';break;
+                }
+            },30);
+            // 如果要是做贪吃蛇游戏,就把onkeyup给关闭即可
+            //再加上碰撞检测
+            //怎么实现长度增加?
+            document.onkeyup = function(){
+                dir = 0;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <!-- 方向   速度 -->
+    <div id="box"></div>
+</body>
+</html>

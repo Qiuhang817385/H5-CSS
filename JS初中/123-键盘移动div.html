@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+
+        }
+    </style>
+        <script>
+            window.onload = function(){
+                var div1 = document.getElementById('box1');
+                // 修改left和top来移动div
+
+
+
+                document.onkeydown = function(event){
+                    event = window.event||event;
+                    let speed = 10;
+                    //按了ctrl以后加速
+                    if(event.ctrlKey){
+                        speed++;
+                    }
+                    // if(event.keyCode===37)
+                    switch(event.keyCode){  
+                        case 37:div1.style.left = div1.offsetLeft-speed+'px';break;
+                        case 39:div1.style.left = div1.offsetLeft+speed+'px';break;
+                        case 38:div1.style.top  = div1.offsetTop-speed +'px';break;
+                        case 40:div1.style.top  = div1.offsetTop+speed +'px';break;
+                            
+                        
+
+                    }
+                }
+            }
+        </script>
+</head>
+<body>
+    <div id="box1">div</div>
+</body>
+</html>
