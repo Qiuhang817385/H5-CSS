@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+
+        }
+        #box3{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            position: absolute;
+            left: 20px;
+            top: 200px
+
+        }
+    </style>
+    <script>
+        /* 
+        知识点:
+        1.拓展了函数,传入attr来判断left top height  width
+        2.拓展了参数,传入一个回调函数,  拓展了可能
+        3.函数方法的重载,传入4个参数和传入5个参数一样.
+        callback&&callback();
+        4.封装方法,到tools.js里面
+        */
+        window.onload = function(){
+            let btn1 = document.getElementById('btn1');
+            let btn2 = document.getElementById('btn2');
+            let box1 = document.getElementById('box1');
+            let btn3 = document.getElementById('btn3');
+            let btn4 = document.getElementById('btn4');
+            let box3 = document.getElementById('box3');
+
+            btn1.onclick = function(){
+                move(box1,'left',800,10);
+            }
+            btn2.onclick = function(){
+                move(box1,'left',0,10);
+            }
+            btn3.onclick = function(){
+                move(box3,'left',800,20);
+            }
+            btn4.onclick = function(){
+                move(box3,'top',400,20);
+            }
+            btn5.onclick = function(){
+                move(box3,'height',400,20);
+            }
+            btn6.onclick = function(){
+                move(box3,'width',400,20,function(){
+                    //同名函数不同参,实现了重载
+                    move(box3,'height',400,20);
+                });
+            }
+            
+            // let numTimer;
+            //attr 比如left  top  height    width
+            function move(obj,attr,target,speed,callback) {
+                // 自己保存自己的定时器
+                clearInterval(obj.numTimer);
+                let current = parseInt(getStyle(obj,attr));
+                speed = current<target?speed:-speed;
+                // 自己保存自己的定时器
+                obj.numTimer = setInterval(function(){
+                    let oldVal = parseInt(getStyle(obj,attr));
+                    let newVal = oldVal+speed;
+                    if((speed>0&&newVal>target)||(speed<0&&newVal<target)){
+                        newVal = target;
+                    }
+                    // ************************
+                    obj.style[attr] = newVal +'px';
+                    if(newVal==target){
+                        // 自己保存自己的定时器
+                        clearInterval(obj.numTimer);
+                        //类似实现了java当中1的重载
+                        callback&&callback();
+                    }
+                },30)
+            }
+            
+            function getStyle(obj,name) {
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">点击以后box1向右移动</button>
+    <button id="btn2">向左移动</button>
+    <button id="btn3">点击以后box3向右移动</button>
+    <button id="btn4">测试top</button>
+    <button id="btn5">测试height</button>
+    <button id="btn6">测试width</button>
+    <div id="box1"></div>
+    <div id="box3"></div>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 800px"></span>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 300px"></span>
+</body>
+</html>

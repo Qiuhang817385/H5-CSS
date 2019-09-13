@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            //获取元素
+            let btn1 = document.getElementById('btn1');
+            let box1 = document.getElementById('box1');
+            let btn2 = document.getElementById('btn1');
+
+            btn1.onclick = function(){
+                move(box1,800,10,'left');
+            }
+            btn2.onclick = function(){
+                //bug   如果起始位置不是300,那么就向300移动了
+                move(box1,300,10,'left');
+            }
+            
+            let numTimer;
+            //                  0       10
+            function move(obj,target,speed) {
+                clearInterval(numTimer);
+                // console.log(oldVal);
+                //获取当前的方向
+                //视频里面是用getcls获取当前的样式,然后获取的current
+                let current = parseInt(getStyle(obj,'left'));
+                speed = current<target?speed:-speed;
+                numTimer = setInterval(function(){
+                    
+                    console.log(speed); //-10
+                    // let oldVal = obj.offsetLeft;
+                    let oldVal = parseInt(getStyle(obj,'left'));
+                    //有一个小缺陷就是只能左右移动,根据视频说法,是获取样式
+                    //不适合任何动画
+                    
+                    let newVal = oldVal+speed;
+                    console.log(newVal);//260
+
+                    //速度如果不是整数,停不到指定位置
+                    //如果向左,newVal<target
+                    //向右  >
+                    if((speed>0&&newVal>target)||(speed<0&&newVal<target)){
+                        newVal = target;
+                    }
+                    
+                        obj.style.left = newVal +'px';
+                  
+                   
+                       
+                   
+                    if(newVal==target){
+                        clearInterval(numTimer);
+                    }
+                },30)
+            }
+            
+            function getStyle(obj,name) {
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">点击以后box1向右移动</button>
+    <button id="btn2">向左移动</button>
+    <div id="box1"></div>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 800px"></span>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 300px"></span>
+</body>
+</html>

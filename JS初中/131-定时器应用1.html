@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            //获取元素
+            let btn1 = document.getElementById('btn1');
+            let box1 = document.getElementById('box1');
+
+            let numTimer;
+            btn1.onclick = function(){
+                //坑点:防止每次新建出定时器,导致动画越来越快
+                clearInterval(numTimer);
+                numTimer = setInterval(function(){
+                    let oldVal = box1.offsetLeft;
+                    let newVal = oldVal+1;
+                    //速度如果不是整数,停不到指定位置
+                    if(newVal>800){
+                        newVal = 800;
+                    }
+                    box1.style.left = newVal +'px';
+                    if(newVal==800){
+                        clearInterval(numTimer);
+                    }
+                })
+            }
+            btn2.onclick = function(){
+                //坑点:防止每次新建出定时器,导致动画越来越快
+                clearInterval(numTimer);
+                numTimer = setInterval(function(){
+                    let oldVal = box1.offsetLeft;
+                    let newVal = oldVal-1;
+                    //速度如果不是整数,停不到指定位置
+                    if(newVal<0){
+                        newVal = 0;
+                    }
+                    box1.style.left = newVal +'px';
+                    if(newVal==0){
+                        clearInterval(numTimer);
+                    }
+                })
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">点击以后box1向右移动</button>
+    <button id="btn2">向左移动</button>
+    <div id="box1"></div>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 800px"></span>
+</body>
+</html>

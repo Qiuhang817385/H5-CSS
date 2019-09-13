@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // ../img/1.jpg
+        window.onload = function(){
+            //获取元素
+            let img = document.getElementById('img1');
+            let btn1 = document.getElementById('btn1');
+            let btn2 = document.getElementById('btn2');
+            let index = 0;
+            let numTimer ;
+            
+            btn1.onclick = function(){
+                clearInterval(numTimer);
+                numTimer = setInterval(() => {
+                    index = index%5+1;
+                    img.src =  `../img/${index}.jpg`
+                }, 500);
+                
+            }
+            btn2.onclick = function(){
+                clearInterval(numTimer);
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+    <img src="../img/1.jpg" alt="" id="img1">
+    <button id="btn1">开始</button>
+    <button id="btn2">停止</button>
+</body>
+</html>
