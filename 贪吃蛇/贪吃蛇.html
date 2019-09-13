@@ -10,8 +10,8 @@
             margin: 0;
         }
         #div1{
-            height: 100px;
-            width: 100px;
+            height: 20px;
+            width: 20px;
             background: red;
             position: absolute;
             left: 0;
@@ -20,30 +20,40 @@
     </style>
     <script>
         window.onload = function(){
-            //获取元素
             let div1 = document.getElementById('div1');
+            //获取元素
             let speed = 10;
             let dir;
-           
+            
             document.onkeydown = function(event){ //键盘事件,控制元素移动
                 // 37,38,39,40
                 dir=event.keyCode;
             }
             let numTimer = setInterval(function(){//消除防误触,让元素持续移动
+                //浏览器窗口宽度减去小球的宽度等于小球能运动到的最大左边位置，下一行代码同理。
+                let leftMax = document.documentElement.clientWidth - div1.clientWidth;
+                let topMax = document.documentElement.clientHeight - div1.clientHeight;
+                window.onresize = function(){//实时监测浏览器的宽高
+                   let leftMax = document.documentElement.clientWidth - div1.clientWidth;
+                   let topMax = document.documentElement.clientHeight - div1.clientHeight;
+               }
+            //    console.log(leftMax);
+            //    console.log(topMax);
+               
                 let left = div1.offsetLeft-speed;
-                
                 let right = div1.offsetLeft+speed;
                 let top = div1.offsetTop-speed;
                 let buttom = div1.offsetTop+speed;
-                console.log(left+' '+right+' '+top+' '+buttom);
+                 console.log(left+' '+right+' '+top+' '+buttom);
+                //          -10 10 -10 10
                 switch(dir){
                     case 37:div1.style.left = left+'px';break;//左
                     case 39:div1.style.left = right+'px';break;//右
                     case 38:div1.style.top = top+'px';break;//上
                     case 40:div1.style.top = buttom+'px';break;//下
                 }
-                if(right>=800){
-                    right = 800;
+                if(right>=leftMax){
+                    right = leftMax;
                     clearInterval(numTimer);
                 }
                 if(left<-10){
@@ -54,23 +64,16 @@
                     top = 0;
                     clearInterval(numTimer);
                 }
-                if(buttom>=600){
-                    buttom = 600;
+                if(buttom>=topMax){
+                    buttom = topMax;
                     clearInterval(numTimer);
                 }
                 
-                console.log(div1.offsetLeft+'<>'+div1.offsetTop);
+                // console.log(div1.offsetLeft+'<>'+div1.offsetTop);
             },30)
             // document.onkeyup = function(){
             //     dir = 0;     取消连续移动,不需要定时器,直接onkeyup就可以实现
             // }
-             //浏览器窗口宽度减去小球的宽度等于小球能运动到的最大左边位置，下一行代码同理。
-             let leftMax = document.documentElement.clientWidth - div1.clientWidth;
-             let topMax = document.documentElement.clientHeight - div1.clientHeight;
-             window.onresize = function(){//实时监测浏览器的宽高
-                let leftMax = document.documentElement.clientWidth - div1.clientWidth;
-                let topMax = document.documentElement.clientHeight - div1.clientHeight;
-            }
 
             //实时获取元素位置
 
@@ -79,9 +82,13 @@
 </head>
 <body>
     <div id="div1"></div>
-    <span style="display: block;width: 0;height: 100%;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 800px"></span>
+    <!-- 右 -->
+    <span style="display: block;width: 0;height: 100%;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 100%"></span>
+    <!-- 左 -->
     <span style="display: block;width: 0;height: 100%;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 0px"></span>
+    <!-- 上 -->
     <span style="display: block;width: 100%;height: 0;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 0px"></span>
+    <!-- 下 -->
     <span style="display: block;width: 100%;height: 0;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 100%;left: 0px"></span>
 </body>
 </html>
