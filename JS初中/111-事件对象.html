@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #areaDiv{
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        #showMsg{
+            width: 600px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let areaDiv = document.getElementById('areaDiv');
+            let showMsg = document.getElementById('showMsg');
+            /* 
+            事件对象:当事件的响应函数被触发的时候,浏览器每次都会把一个事件对象,作为实参,传入响应函数
+
+            事件对象封装了本事件的一切信息
+                鼠标坐标,键盘那个按键被按下,鼠标滑轮滚动方向
+            */
+            areaDiv.onmousemove = function (event) {
+                event = event||window.event;//window    ie8以下
+                showMsg.innerHTML = event.clientX+' '+ event.clientY;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 获取坐标 -->
+    <div id="areaDiv"></div>
+    <div id="showMsg"></div>
+</body>
+</html>
