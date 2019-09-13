@@ -46,7 +46,10 @@
                 clearInterval(numTimer);
                 numTimer = setInterval(function(){
                     let oldVal = box1.offsetLeft;
+                    console.log(oldVal);
+                    
                     let newVal = oldVal-1;
+                    console.log(newVal);
                     //速度如果不是整数,停不到指定位置
                     if(newVal<0){
                         newVal = 0;
