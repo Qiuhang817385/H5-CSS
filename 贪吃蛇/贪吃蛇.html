@@ -25,20 +25,28 @@
             let div1 = document.getElementById('div1');
             let speed = 10;
             
+            let dir;
+
             //键盘事件,控制元素移动
             document.onkeydown = function(event){
                 // console.log(event.keyCode);
                 // 37,38,39,40
-                switch(event.keyCode){
-                    case 37:div1.style.left = div1.offsetLeft-speed;break;//左
-                    case 39:div1.style.left = div1.offsetLeft+speed;break;//右
-                    case 38:div1.style.top = div1.offsetTop-speed;break;//上
-                    case 40:div1.style.top = div1.offsetTop+speed;break;//下
-                }
-
-                    
+                dir=event.keyCode;
+                
             }
-            
+            let numTimer = setInterval(function(){
+
+                switch(dir){
+                    case 37:div1.style.left = div1.offsetLeft-speed+'px';break;//左
+                    case 39:div1.style.left = div1.offsetLeft+speed+'px';break;//右
+                    case 38:div1.style.top = div1.offsetTop-speed+'px';break;//上
+                    case 40:div1.style.top = div1.offsetTop+speed+'px';break;//下
+                }
+            },30)
+
+            // document.onkeyup = function(){
+            //     dir = 0;     取消连续移动,不需要定时器,直接onkeyup就可以实现
+            // }
         }
     </script>
 </head>
