@@ -20,22 +20,16 @@
     </style>
     <script>
         window.onload = function(){
-
             //获取元素
             let div1 = document.getElementById('div1');
             let speed = 10;
-            
             let dir;
-
-            //键盘事件,控制元素移动
-            document.onkeydown = function(event){
-                // console.log(event.keyCode);
+           
+            document.onkeydown = function(event){ //键盘事件,控制元素移动
                 // 37,38,39,40
                 dir=event.keyCode;
-                
             }
-            let numTimer = setInterval(function(){
-
+            let numTimer = setInterval(function(){//消除防误触,让元素持续移动
                 switch(dir){
                     case 37:div1.style.left = div1.offsetLeft-speed+'px';break;//左
                     case 39:div1.style.left = div1.offsetLeft+speed+'px';break;//右
@@ -43,10 +37,18 @@
                     case 40:div1.style.top = div1.offsetTop+speed+'px';break;//下
                 }
             },30)
-
             // document.onkeyup = function(){
             //     dir = 0;     取消连续移动,不需要定时器,直接onkeyup就可以实现
             // }
+             //浏览器窗口宽度减去小球的宽度等于小球能运动到的最大左边位置，下一行代码同理。
+             let leftMax = document.documentElement.clientWidth - div1.clientWidth;
+             let topMax = document.documentElement.clientHeight - div1.clientHeight;
+             window.onresize = function(){//实时监测浏览器的宽高
+                let leftMax = document.documentElement.clientWidth - div1.clientWidth;
+                let topMax = document.documentElement.clientHeight - div1.clientHeight;
+            }
+            //实时获取元素位置
+            
         }
     </script>
 </head>
