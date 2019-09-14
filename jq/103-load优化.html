@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 为了避免多页面情形下的代码重复，
+    可以利用 load() 方法，将重复的部分
+    （例如导航栏）放入单独的文件，
+    使用下列方法进行导入： -->
+    <!-- 
+        1.当前文件中要插入的地方使用此结构：
+        <div class="include" file="***.html"></div>
+
+        2.***.html中放入内容，用html格式仅仅因为会有编辑器的书写辅助。。
+
+        3.代码：
+        $(".include").each(function() {
+         if (!!$(this).attr("file")) {
+             var $includeObj = $(this);
+             $(this).load($(this).attr("file"), function(html) {
+                 $includeObj.after(html).remove(); //加载的文件内容写入到当前标签后面并移除当前标签
+              })
+         }
+        });
+        或者在index文件里只写重复部分，剩下的一股脑放各自单独文件 load() 进来~
+        
+     -->
+</body>
+
+</html>

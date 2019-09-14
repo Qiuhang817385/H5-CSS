@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery-1.11.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                // jQuery load() 方法是简单但强大的 AJAX 方法。
+                // load() 方法从服务器加载数据，并把返回的数据放入被选元素中。
+                $('#div1').load('demo_test.txt');
+            })
+        })
+    </script>
+</head>
+<body>
+   
+    <div id="div1"></div>
+    <button>获取外部内容</button>
+</body>
+</html>
