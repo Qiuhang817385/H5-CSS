@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-1.11.0.js"></script>
+    <!-- 浏览器查询参数与表单数据的优先级 -->
+    <script>
+        // $.post(URL,data,callback);
+        //       必须  可选请求发送的数据  可选callback 参数是请求成功后所执行的函数名
+        $(document).ready(function(){
+            $("button").click(function(){
+                /* 
+                
+                解决 405 错误 – 一般方法
+                405 错误经常和 POST 方法同时出现。 
+                您可能在您的网站上尝试引入某种输入表格，但并非所有的互联网服务供应商 (ISPs) 都 允许处理该表格所需的 POST 方法。
+                所有 405 错误都可以追综到 Web 服务器设置和控制访问网站内容的安全管理，因此您的 ISP 应该很容易地予以解释。
+                */
+            //    这里需要一个接受的网址,里面是类似servlet的request和response方法
+                $.post('demo_test.txt',{
+                    name:"邱航",
+                    url:"http://www.baidu.com"
+                },function(data,status){
+                    //这里传数据不做处理
+                    console.log(data);
+                    console.log(status);//success
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <!-- 
+        语法：
+        $.get(URL,callback);
+            必需    可选    callback 参数是请求     成功后   所执行的函数名
+     -->
+     <button>按钮</button>
+</body>
+</html>
