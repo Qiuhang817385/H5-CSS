@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1 {
+            height: 100px;
+            width: 200px;
+            background: red;
+            /* 但是如果加这个   那么js代码就修改不了 */
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let div1 = document.getElementById('div1')
+            let btn01 = document.getElementById('btn01')
+            function getStyle(obj, name) {
+                if(window.getComputedStyle){
+                    return getComputedStyle(obj, null)[name]; //获取的是undefined
+                }else{
+                    return obj.currentStyle[name];
+                }
+
+                //变量没有找到,会报错
+                //属性没有找到,会返回undefined
+                //给getComputedStyle加上window,让它从变量,变成window的属性
+                
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击</button>
+
+    <div id="div1"></div>
+</body>
+
+</html>
