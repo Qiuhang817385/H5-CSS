@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+
+        }
+        #box3{
+            width: 100px;
+            height: 25px;
+            background: yellow;
+            position: absolute;
+            left: 500px;
+            top: 0;
+            overflow: hidden;
+        }
+        div > span {
+            display: inline-block;
+        }
+        div > a {
+            display: inline-block;
+        }
+    </style>
+    <script>
+       
+        window.onload = function(){
+            let btn1 = document.getElementById('btn1');
+            let btn2 = document.getElementById('btn2');
+            let box3 = document.getElementById('box3');
+            btn1.onclick = function(){
+                move(box3,'height',225,20);
+            }
+            btn2.onclick = function(){
+                move(box3,'height',25,20);
+            }
+            // let numTimer;
+            //attr 比如left  top  height    width
+            function move(obj,attr,target,speed,callback) {
+                // 自己保存自己的定时器
+                clearInterval(obj.numTimer);
+                let current = parseInt(getStyle(obj,attr));
+                speed = current<target?speed:-speed;
+                // 自己保存自己的定时器
+                obj.numTimer = setInterval(function(){
+                    let oldVal = parseInt(getStyle(obj,attr));
+                    let newVal = oldVal+speed;
+                    if((speed>0&&newVal>target)||(speed<0&&newVal<target)){
+                        newVal = target;
+                    }
+                    // ************************
+                    obj.style[attr] = newVal +'px';
+                    if(newVal==target){
+                        // 自己保存自己的定时器
+                        clearInterval(obj.numTimer);
+                        //类似实现了java当中1的重载
+                        callback&&callback();
+                    }
+                },30)
+            }
+            
+            function getStyle(obj,name) {
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <button id="btn1">变高</button>
+    <button id="btn2">变低</button>
+    
+    <div id="box3">
+            <span>在线工具</span>
+            <a href="#">图像优化</a>
+            <a href="#">收藏夹图标生成器</a>
+            <a href="#">邮件</a>
+            <a href="#">htaccess密码</a>
+            <a href="#">梯度图像</a>
+            <a href="#">按钮生成器</a>
+    </div>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 800px"></span>
+    <span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 300px"></span>
+</body>
+</html>

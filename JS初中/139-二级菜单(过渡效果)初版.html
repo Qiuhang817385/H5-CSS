@@ -1,0 +1,97 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    a,
+    img {
+        border: 0;
+        text-decoration: none;
+    }
+    body {
+        font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/sdmenu.css" />
+
+<script type="text/javascript" src="../js/tools.js"></script>
+<script>
+    window.onload = function () {
+        let spanMenu = document.querySelectorAll('.menuSpan');
+         let openDiv = spanMenu[0].parentNode;//这个时候写死了, 怎么动态改变???********(1)
+        for (let index = 0; index < spanMenu.length; index++) {
+            spanMenu[index].onclick = function () {
+              
+                let parDiv = this.parentNode;
+                //获取动画执行之前的值
+                let begin = parDiv.offsetHeight;
+                toggleClass(parDiv, 'collapsed');
+                //获取动画执行之后的值
+                let end = parDiv.offsetHeight;
+                //*************************************************
+                parDiv.style.height = begin;
+                //表示  想从初始的起始位置,向end位置过渡移动
+                move(parDiv,'height',end,10,function(){
+                    parDiv.style.height = '';
+                    //动画执行完之后,内联样式还在,这个时候没有必要存在,直接删除
+                })//这两步是为了执行动画
+                //**************************************************
+                if(parDiv!==openDiv && !hasClass(openDiv, 'collapsed')){//********(3)
+                    //为了统一处理动画的过渡效果,将addClass改成toggleClass
+                    //如果没有这个属性,加上,如果有,不加 这里模拟实现的是加上的
+                    // addClass(openDiv, 'collapsed')
+                    toggleClass(openDiv, 'collapsed')
+                }
+                //修改div   为当前打开的菜单
+                openDiv = parDiv;//********(2)
+                
+            }
+        }
+    }
+</script>
+
+<body>
+    <div id="my_menu" class="sdmenu">
+        <div>
+            <span class="menuSpan">在线工具</span>
+            <a href="#">图像优化</a>
+            <a href="#">收藏夹图标生成器</a>
+            <a href="#">邮件</a>
+            <a href="#">htaccess密码</a>
+            <a href="#">梯度图像</a>
+            <a href="#">按钮生成器</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">支持我们</span>
+            <a href="#">推荐我们</a>
+            <a href="#">链接我们</a>
+            <a href="#">网络资源</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">合作伙伴</span>
+            <a href="#">JavaScript工具包</a>
+            <a href="#">CSS驱动</a>
+            <a href="#">CodingForums</a>
+            <a href="#">CSS例子</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">测试电流</span>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+        </div>
+    </div>
+</body>
+
+</html>

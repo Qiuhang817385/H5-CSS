@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    a,
+    img {
+        border: 0;
+        text-decoration: none;
+    }
+
+    body {
+        font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/sdmenu.css" />
+
+<script type="text/javascript" src="../js/tools.js"></script>
+<script>
+    window.onload = function () {
+        // 为什么有的时候用
+        // getElementsByClassName                      不兼容ie8
+        // querySelectorAll('.样式名'/'#样式名')        兼容ie8
+        let spanMenu = document.querySelectorAll('.menuSpan');
+        console.log(spanMenu.length);
+        /* spanMenu.onclick = function(){
+            alert('1');
+        }
+        糊涂,这是一个数组,应该一个一个给绑定
+        */
+        for (let index = 0; index < spanMenu.length; index++) {
+            const element = spanMenu[index];
+            element.onclick = function () {
+                // alert(index);
+                let parDiv = element.parentNode;
+                toggleClass(parDiv, 'collapsed');
+            }
+        }
+
+
+    }
+</script>
+
+<body>
+    <div id="my_menu" class="sdmenu">
+        <div>
+            <!-- 当折叠起来,就是把这最上面的大块设置成固定25的高度 -->
+            <span class="menuSpan">在线工具</span>
+            <a href="#">图像优化</a>
+            <a href="#">收藏夹图标生成器</a>
+            <a href="#">邮件</a>
+            <a href="#">htaccess密码</a>
+            <a href="#">梯度图像</a>
+            <a href="#">按钮生成器</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">支持我们</span>
+            <a href="#">推荐我们</a>
+            <a href="#">链接我们</a>
+            <a href="#">网络资源</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">合作伙伴</span>
+            <a href="#">JavaScript工具包</a>
+            <a href="#">CSS驱动</a>
+            <a href="#">CodingForums</a>
+            <a href="#">CSS例子</a>
+        </div>
+        <div class="collapsed">
+            <span class="menuSpan">测试电流</span>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+            <a href="#">Current or not</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+        .div2{
+            width: 200px;
+            height: 200px;
+            background: rgb(255, 251, 0);
+            position: absolute;
+        }
+        .div3{
+            width: 500px;
+           
+            background: rgb(2, 99, 245);
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let btn1 = document.getElementById('btn1');
+            let div1 = document.getElementById('div');
+            btn1.onclick = function(){
+                /* 
+                    通过style来修改元素样式,每修改一个样式,浏览器就需要重新渲染一次页面
+                    执行性能较差
+                    修改多个样式的时候也不方便
+                    用js直接修改css
+                    js是行为
+                    css是表现
+                    耦合    js实现动画就是耦合了吧
+
+                    修改宽高的时候,单个的时候,用tyle
+                    整体修改的时候用    class
+                    */
+                    /* 
+                    目标    一行代码修改多个样式
+
+                    通过class来修改
+                    表现和行为进一步分离,不用控制具体的行为
+
+                */
+                // div.className = 'div2';
+                // addClass(div1,'div2');
+                // removeClass(div1,'div2')
+                toggleClass(div1,'div3');
+            }
+            function addClass(element,cls){
+                if(!hasClass(element,cls)){
+                    element.className += ' '+cls;//只希望修改高,背景
+                }
+            }
+            function hasClass(element,cls){
+                //  /b2/匹配b2      \b独立单词\b
+                //  /\bb2\b/;
+                let reg = new RegExp('\\b'+cls+'\\b');
+                return reg.test(element.className);
+            }
+            function removeClass(element,cls) {
+                let reg = new RegExp('\\b'+cls+'\\b');
+                console.log(reg);///\bdiv3\b/   改进的办法就是在前面加上空串判断
+                
+                element.className = element.className.replace(reg,"");
+            }
+            //切换
+            function toggleClass(element,cls) {
+                if(hasClass(element,cls)){
+                    removeClass(element,cls);
+                }else{
+                    addClass(element,cls);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">点击</button>
+    <div id="div" class="div1 div2"></div>
+</body>
+</html>
