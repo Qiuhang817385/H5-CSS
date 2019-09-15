@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            /* 高度是wt 然后直接跟50就可以生成多少像素******************************/
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: red;
+        }
+
+        #div2 {
+            width: 100px;
+            /* 高度是wt 然后直接跟50就可以生成多少像素******************************/
+            height: 100px;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            background: rgb(143, 248, 4);
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // 问题,当界面复杂,移动div1的时候,鼠标在div2元素上面松开的时候,绑定到了div2,
+            let div1 = document.getElementById('div1');
+            let div2 = document.getElementById('div2');
+
+            function durg(obj){
+            obj.onmousedown = function (event) {
+                
+                let lr = event.clientX - obj.offsetLeft;
+                let tr = event.clientY - obj.offsetTop;
+
+                document.onmousemove = function (event) {
+                    obj.style.left = event.clientX-lr + 'px';
+                    obj.style.top  = event.clientY-tr + 'px';
+                }
+                //此处应该给document绑定一个事件
+                // obj.onmouseup = function(){
+                document.onmouseup = function () {
+                    //当鼠标松开的时候,取消document的onmousemove事件就可以
+                    document.onmousemove = null;
+                }
+                return false;
+            }
+
+        }
+            durg(div1);
+            durg(div2);
+          
+            /* 当拖拽网页内容的时候,会自动到搜索引擎搜索
+                此时会导致拖拽功能的异常,浏览器提供的默认行为
+                // return false;就可以
+
+                //但是ie8不起作用
+
+                btn01.setCapture()  任何鼠标点击事件都相当于点击自己    抢别人的事件
+             */
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+        1.鼠标在元素上按下时,开始拖拽   onmousedown
+        2.鼠标移动时,元素跟随鼠标移动   onmousemove
+        3.鼠标松开,元素固定在当前位置   onmouseup
+     -->
+        <span>qiuhang</span>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+
+</html>

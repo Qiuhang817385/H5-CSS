@@ -62,7 +62,13 @@
             btn6.onclick = function(){
                 move(box3,'width',400,20,function(){
                     //同名函数不同参,实现了重载
-                    move(box3,'height',400,20);
+                    move(box3,'height',400,20,function(){
+                        move(box3,'width',100,20,function(){
+                            move(box3,'top',100,20,function(){
+                                move(box3,'height',100,20)
+                            })
+                        })
+                    });
                 });
             }
             
