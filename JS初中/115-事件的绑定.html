@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            let btn01 = document.getElementById('btn01');
+            btn01.addEventListener('click',function(){  
+                alert('1');
+            },false)
+            btn01.addEventListener('click',function(){
+                alert('2');
+            },false)
+            //dom2可以绑定多个事件  ie8不支持dom2
+
+            // 代替方案
+            /* 
+                btn01.attachEvent('onclick',function())//就俩参数 执行顺序相反  顺序不用处理
+             */
+        }
+
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击</button>
+</body>
+
+</html>
