@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let div1 = document.getElementById('div1')   
+            //为box1绑定滚轮滑动事件.
+            //onmousewheel鼠标滚轮      火狐不支持
+
+            // 火狐兼容     DOMMouseScroll来绑定滚动事件
+            //需要dom2来调用
+            div1.onmousewheel = function(event){
+                //往上滚是120   下是-120
+                if(event.wheelDelta>0   ||  event.detail<0){//向上
+                    // alert('上');
+                    //div1.clientHeight 现在的可见高度
+                    div1.style.height = div1.clientHeight   -   10+'px'
+                }
+                if(event.wheelDelta<0   ||  event.detail>0){//向下
+                    // alert('下');
+                    div1.style.height = div1.clientHeight   +   10+'px'
+                }
+                //event.detail  火狐    上-3    下  3
+
+                /* 
+                    当滚动条滚动时,浏览器的默认行为-滚动条也随之滚动
+                    取消默认行为
+                    return false;
+
+
+                    addEventListener()方法  绑定火狐的响应函数,取消默认行为时不能使用return false
+                    用event.preventDefault();   一对一的
+                 */
+                 event.preventDefault && event.preventDefault();//ie8不支持     解决方法
+                 return false;
+            }
+            // 兼容火狐浏览器
+            div1.addEventListener('DOMMouseScroll',div1.onmousewheel,false);
+
+            //或者把function提取出来,作为一个函数来调用     div1.onmousewheel =fun  ~~~
+        }
+    </script>
+</head>
+<body style="height: 1000px;">
+    <div id="div1"></div>
+</body>
+</html>
