@@ -1,0 +1,90 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /* 
+            JSON    就是一个特殊格式的字符串
+            可以被任意语言所识别
+            在前后端传输,大家都认识的东西
+            转换成字符串
+            JavaScript object notation
+            //js对象表示法
+
+            json和js对象的格式一样
+            只不过加了单引号******************
+            
+            属性名必须加双引号******************
+            JSON分类:
+                1.对象{}
+                2.数组[]
+            JSON里面允许的值
+                1,字符串
+                2,数值
+                3,Boolean
+                4,null
+                5,对象(普通对象,不包括函数) js里面,数组也是对象,函数也是对象
+                6,数组
+         */
+        //1.js对象
+        var obj = {"name": '孙悟空',"age": 18,"gender": "男"};//js对象
+        //2.json字符串(json对象)
+        var obj2 = '{"name": "孙悟空","age": 18,"gender":"男"}';//js对象加上单引号就是json字符串
+        //3.json数组
+        var arr = '[1,2,33,"hello",true]'
+        //4json对象数组
+        var obj3 = '{"arr":[1,2,3]}';
+        //5json数组对象
+        var arr2 = '[{"name": "孙悟空","age": 18,"gender":"男"},{"name": "孙悟空","age": 18,"gender":"男"}]'
+
+        console.log(obj);
+     //Object   Object
+
+        //把json转换成对象
+        /* 
+        js当中提供了一个工具类,就叫JSON
+         */
+         //json数组对象     ----转成----    js对象
+         let newArr2 = JSON.parse(arr2);
+         console.log(newArr2 instanceof Array);
+         //json对象数组     ----转成----    js对象
+         let newObj3 = JSON.parse(obj3);
+         console.log(typeof newObj3);
+        //js对象  (用JSON方法的话,js对象属性可以不加双引号)          ----转成----    json字符串
+         let jsonStr = JSON.stringify(newObj3);
+         console.log(typeof jsonStr);
+
+         /* 
+            JSON在ie7和以下不支持
+          */
+         
+         
+
+         /* eval函数
+            这个函数 把字符串解析成js代码
+            如果使用eval()执行的字符串,含有{},会把{}当成代码块
+            方案,如果不希望解析成代码块,则需要在前后各加一个()
+
+           let  a=  '({"name":"qiuhang","age":17})'
+            eval(a)
+            或者
+           let  a=  '{"name":"qiuhang","age":17}'
+           let obj =  eval("("+a+")")   //把json字符串可以转换成对象
+           但是不推荐使用
+           执行性能比较差
+           安全隐患
+
+
+           如果非要兼容,引入一个json2.js文件
+          */
+
+         </script>
+</head>
+
+<body>
+</body>
+
+</html>
