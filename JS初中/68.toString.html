@@ -1,0 +1,40 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script>
+        window.onload = function(){
+            function Persion(name,age,gender) {
+                this.name = name ; 
+                this.age = age ; 
+                this.gender = gender ; 
+            }
+            //重写Person的toString的方法
+            Persion.prototype.toString = function(){
+
+                return  `Person[name = ${this.name},age=${this.age},gender=${this.gender}]`;
+            }
+
+            let per  = new Persion('邱航',18,'男');
+            console.log(per);               //Object Object
+            
+            console.log(per.toString());    //Object Object [object Object]
+
+            //当我们直接在页面打印一个对象的时候,实际上是输出的对象的toString()方法的返回值
+            console.log(per.hasOwnProperty('toString'));    //false
+            console.log(per.__proto__.__proto__.hasOwnProperty('toString'));    //true
+            
+            //如果不希望输出[Object Object],可以修改对象的tostring方法
+            per.toString = function(){
+                return  `Person[name = ${this.name},age=${this.age},gender=${this.gender}]`;
+                // return  'Person[name = " + this.name + ",age=" + this.age + ",gender="+this.gender+"]'';
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
