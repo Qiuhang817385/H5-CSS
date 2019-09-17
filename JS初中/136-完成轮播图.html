@@ -1,0 +1,206 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        两个点
+        1.怎么通过js设置居中效果
+        2.通过js设置第一个默认选中的效果
+        
+     -->
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width: 520px;
+            height: 333px;
+            margin: 50px auto;
+            background-color: yellowgreen;
+            padding: 10px 0;
+            position: relative;
+
+            overflow: hidden;
+        }
+        #imgList{
+            list-style: none;
+            /* (2)没有设置宽度,给上一级容器需要设置宽度 */
+            /* width: 2600px; */
+            /* 通过js动态根据图片数量来获取宽度 */
+            position: absolute;
+        }
+        #imgList li{
+            /*(1) 没法到第一行的的原因 */
+            float: left;
+            margin: 0 10px
+        }
+        #navDiv{
+            z-index: 5;
+            position: absolute;
+            bottom: 15px;
+            /* left: 50%; */
+            /* 设置left的值
+                outer   宽520
+                nav 25*5    125
+                520-125 = 395
+
+                395/2 = 927.5
+             */
+             
+
+        }
+        #navDiv > a{
+            /* display: inline-block; */
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            border: 1px solid yellow;
+            background-color: red;
+            /* 调整背景颜色透明 */
+            opacity: 0.5;
+            /* 兼容ie8 */
+            filter: alpha(opacity=50);
+            
+        }
+        #navDiv > a:hover{
+            background-color: black;
+        }
+    </style>
+    <script src="../js/tools.js"></script>
+    <script>
+        window.onload = function(){
+            //设置imgList的宽度
+            let imgList = document.getElementById('imgList');
+            // console.log(imgList.childElementCount);//5
+            let imgArr = document.getElementsByTagName('img');
+            //  imgList.childElementCount === arr.length
+            console.log(imgArr.length);
+            
+            // console.log(imgList.childNodes);
+            
+            
+            
+            imgList.style.width = (imgList.childElementCount*520)+'px';
+
+
+            /* 设置导航按钮居中 */
+            let navDiv = document.getElementById('navDiv');
+            //获取父元素
+            let outer = document.getElementById('outer');
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth)/2+'px';
+            // 怎么居中,通过js方式来实现,兄弟元素上面的居中
+
+
+
+            //默认选中第一个
+            let index = 0;
+            let allA =  document.getElementsByTagName('a');
+            allA[index].style.backgroundColor = 'black';
+                /* 
+                    点击超链接切换到指定的图片
+                */
+                //为超链接绑定单击响应函数
+            for (let i = 0; i < allA.length; i++) {
+                const element = allA[i];
+                //这个时候可以为超链接绑定索引  解决异步回调的影响
+                element.num = i;
+                element.onclick = function(){
+                //点击的时候应该关闭定时器,然后再开启定时器
+                //在回调函数里面调用(end)
+                    clearInterval(timer);
+
+                    // alert('')
+                    // 获取点击超链接的索引
+                    // alert(i);    这个时候i一直是5
+
+                    //先执行for循环,再执行单击响应函数
+                    // alert(element.num);     //element.num == this.num
+                    index = this.num;
+                    //切换图片
+                    // imgList.style.left = (0-520*i)+'px';点击切换
+                    //代替方式使用move函数
+                    move(imgList,'left',-520*index,30,function(){
+                        //****************************//在回调函数里面调用(end)
+                        autoChange()//表明动画执行完毕(end)
+                    })
+                    setA();
+                    /* 缺陷,hover的样式被覆盖掉了 */
+
+
+            
+                }
+            }
+            //开启自动切换
+            //优化-同时有两个动画在执行,点击和定时器
+
+            autoChange();
+            //创建一个方法来设置选中的a
+            function setA(){
+                //这个时候加上第六张图片,但是索引点没有变黑
+                //判断 当前索引是否是最后一张图片
+                if(index>=imgArr.length-1){
+                    index = 0;
+                    //通过css把最后一张变成第一张,瞬间的事情,
+                    imgList.style.left = 0+'px';
+                }
+                for (let i = 0; i < allA.length; i++) {//遍历所有的a并且把背景设置成红色
+                    const element = allA[i];
+                    // element.style.backgroundColor ='red';
+                    /* 缺陷,hover的样式被覆盖掉了 */
+                    /* 解决方式,把这个设置成空的字符串 */
+                    element.style.backgroundColor ='';
+                }
+                allA[index].style.backgroundColor = 'black';
+            }
+            /* 
+            
+            常见的回调函数?
+            * DOM事件函数
+            * 定时器函数
+            * ajax回调函数(后面学)
+            * 生命周期回调函数(后面学)
+             */
+             //创建一个函数,用来开启自动切换图片
+            var timer;
+           function autoChange() {
+                //开启一个定时器,用来定时去切换图片
+                timer = setInterval(function(){
+                    //使索引自增
+                    index++;
+                    index = index % imgArr.length ;
+                    //执行动画
+                    move(imgList,"left",-520*index,20,function(){
+                        setA();
+                    });
+                    
+                }, 2000);
+           }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li><img src="../img/1.jpg"/></li>
+            <li><img src="../img/2.jpg"/></li>
+            <li><img src="../img/3.jpg"/></li>
+            <li><img src="../img/4.jpg"/></li>
+            <li><img src="../img/5.jpg"/></li>
+            <li><img src="../img/1.jpg"/></li>
+        </ul>
+        <!-- 创建导航按钮 -->
+        <div id="navDiv">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+</body>
+</html>

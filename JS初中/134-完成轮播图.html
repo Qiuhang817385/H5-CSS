@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        两个点
+        1.怎么通过js设置居中效果
+        2.通过js设置第一个默认选中的效果
+        
+     -->
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width: 520px;
+            height: 333px;
+            margin: 50px auto;
+            background-color: yellowgreen;
+            padding: 10px 0;
+            position: relative;
+
+            /* overflow: hidden; */
+        }
+        #imgList{
+            list-style: none;
+            /* (2)没有设置宽度,给上一级容器需要设置宽度 */
+            /* width: 2600px; */
+            /* 通过js动态根据图片数量来获取宽度 */
+            position: absolute;
+        }
+        #imgList li{
+            /*(1) 没法到第一行的的原因 */
+            float: left;
+            margin: 0 10px
+        }
+        #navDiv{
+            z-index: 5;
+            position: absolute;
+            bottom: 15px;
+            /* left: 50%; */
+            /* 设置left的值
+                outer   宽520
+                nav 25*5    125
+                520-125 = 395
+
+                395/2 = 927.5
+             */
+             
+
+        }
+        #navDiv > a{
+            /* display: inline-block; */
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            border: 1px solid yellow;
+            background-color: red;
+            /* 调整背景颜色透明 */
+            opacity: 0.5;
+            /* 兼容ie8 */
+            filter: alpha(opacity=50);
+            
+        }
+        #navDiv > a:hover{
+            background-color: black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            //设置imgList的宽度
+            let imgList = document.getElementById('imgList');
+            // console.log(imgList.childElementCount);//5
+            //let arr = document.getelementsbyTargetName('img')
+            //  imgList.childElementCount === arr.length
+            // console.log(imgList.childNodes);
+            
+            
+            
+            imgList.style.width = (imgList.childElementCount*520)+'px';
+
+
+            /* 设置导航按钮居中 */
+            let navDiv = document.getElementById('navDiv');
+            //获取父元素
+            let outer = document.getElementById('outer');
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth)/2+'px';
+            // 怎么居中,通过js方式来实现,兄弟元素上面的居中
+
+
+
+            //默认选中第一个
+            let index = 0;
+            let allA =  document.getElementsByTagName('a');
+            allA[index].style.backgroundColor = 'black';
+           
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li><img src="../img/1.jpg"/></li>
+            <li><img src="../img/2.jpg"/></li>
+            <li><img src="../img/3.jpg"/></li>
+            <li><img src="../img/4.jpg"/></li>
+            <li><img src="../img/5.jpg"/></li>
+        </ul>
+        <!-- 创建导航按钮 -->
+        <div id="navDiv">
+            <a href="javascript:''">a</a>
+            <a href="javascript:''">a</a>
+            <a href="javascript:''">a</a>
+            <a href="javascript:''">a</a>
+            <a href="javascript:''">a</a>
+        </div>
+    </div>
+</body>
+</html>
