@@ -1,0 +1,208 @@
+
+
+body{
+	background: url(../img/5.jpg);
+	font-family: "palatino linotype","verdana, geneva, arial, helvetica, sans-serif";
+	font-size: 15px;
+	color: #3a7127;
+	font-weight: 400;
+	overflow-y: scroll;
+}
+a{
+	text-decoration: none;
+	color: #333;
+	
+}
+/*清除浮动*/
+.clr{
+	height: 0;
+	width: 0;
+	overflow: hidden;
+	clear: both;
+}
+
+.container{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	position: relative;
+	/*盒子定位的时候相对container来说的*/
+	
+}
+.container>header{
+	/*上右下左*/
+	padding: 20px 30px 10px 30px;
+	margin: 0px 20px 10px 20px;
+	/*水平,竖直,阴影程度,颜色*/
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.container>header>h1{
+	font-size: 35px;
+	/*行间距*/
+	line-height: 35px;
+	font-weight: 400;
+	color: rgba(26,189,180,0.9);
+	padding-bottom: 5px;
+	
+}
+.container>header>h1>span{
+	color: #7cbcd6;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+}
+/*----------------------------h1完成-----------------*/
+.codrops-demols{
+	padding: 14px;
+}
+
+.codrops-demols a{
+	color: #7cbcd6;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	/*设置文字行高*/
+	line-height: 60px;
+	background: rgba(104,171,194,0.5);
+	border-radius: 50%;
+	font-size: 11px;
+	font-weight: 800;
+	/*倾斜*/
+	font-style: italic;
+	margin: 0 3px;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	/*给按钮加阴影,inset 内阴影*/
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.1) inset;
+	
+}
+
+.codrops-demols a.current-demo,
+.codrops-demols a.current-demo:hover{
+	background: rgba(255,255,255,0.9);
+	color: rgba(104,171,194,1);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+/*定义鼠标滑过的时候会加深颜色
+ */
+.codrops-demols a:hover{
+	background: #4fa2d4;
+}
+
+/*页面主体*/
+.cr-container{
+	width: 683px; 
+	height: 384px;
+	margin: 0 auto;
+	position: relative;
+	border: 20px solid #fff;
+}
+.cr-container>input{
+	display: none;
+}
+/*label是个内联元素,width,height等起不到作用
+ 	只有浮动之后才起作用
+ * */
+.cr-container label{
+	font-style: italic;
+	width: 170.75px;
+	height: 30px;
+	/*鼠标滑过的时候变成手型*/
+	cursor: pointer;
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+	line-height: 32px;
+	margin-top: 325px;
+	float: left;
+	/*background: #fff;*/
+	/*需要在指定的位置显示圆,对父元素做相对定位,再对子元素做绝对定位*/
+	position: relative;
+	
+/*让按钮在层的最上面*/
+z-index: 1000;
+}
+.cr-container label:before{
+	content: "";
+	/*默认是一个内联元素,需要成为块级元素*/
+	/*display: block;*/
+	/*在内联元素父里面加上float或者position后会自动变成块元素,上面可以省略*/
+	position: absolute;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: rgba(130,195,217,0.9);
+	
+	/*让圆居中*/
+	float: left;
+	margin-left: -11px;
+	/*让文字在圆的上面*/
+	z-index: -1;
+	
+	
+	/*更改圆的边框,还不希望更改圆的大小,不推荐用border*/
+	/*上下,左右,模糊程度,大小,颜色*/
+	box-shadow: 0 0 0 4px rgba(255,255,255,0.3);
+}
+.cr-container input:checked + label{
+	color: #68abc2;
+}
+.cr-container input:checked + label:before{
+	background:#fff ;
+	box-shadow: 0 0 0 4px rgba(255,255,255,0.3);
+}
+
+.cr-container label:after{
+	content: "";
+	width: 1px;
+	height: 384px;
+	position: absolute;
+	right: 0;
+	bottom: -29px;
+	
+	/*background: -webkit-linear-gradient(top,white 0%,white 100%);
+	background:    -moz-linear-gradient(top,white 0%,white 100%);
+	background:      -0-linear-gradient(top,white 0%,white 100%);
+	background:         linear-gradient(top,white 0%,white 100%);
+	*/
+	background: -webkit-linear-gradient(top,rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+	background:    -moz-linear-gradient(top,rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+	background:      -o-linear-gradient(top,rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+	background:         linear-gradient(top,rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.cr-container label:last-child:after{
+	width: 0;
+}
+
+.cr-bgimg{
+	width: 683px; 
+	height: 384px;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	
+	background-repeat: no-repeat;
+}
+
+.cr-bgimg > div{
+	height: 100%;
+	width: 170.75px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+/*分辨率低于768,显示单选按钮,不用文本圆框*/
+@media only screen and (max-width:768px ) {
+	.container input{
+		display: inline;
+		width:20%;
+		position: relative;
+		margin-top: 350px;
+		z-index: 1000;
+	}
+	.container label{
+		display: none;
+	}
+}

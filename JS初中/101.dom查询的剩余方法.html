@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            /* 
+            document 里面有一个属性body,保存的是body的引用
+             */
+            let body = document.body;   //这个就是body
+            console.log(body);
+
+            let html =  document.documentElement;//这个就是html,根标签
+
+            let all = document.all;//undefined  不是真实的undefined
+            let all2 = document.getElementsByTagName("*");  //这样也能获取所有的元素
+            // all.length 
+            //typeof all    //也是undefined
+
+            // for循环遍历可以遍历出页面的所有element   所有
+
+            //根据元素的class属性查询       一组        元素节点对象
+            //只兼容ie9以上
+            let box1 = document.getElementsByClassName('div1');
+            //3    ===    box1.length
+            
+
+
+            //获取div2里面的所有div
+            // css里面有伪类元素
+            //通过css选择器来查询   selector----选择器
+            /* 
+                需要一个选择器字符串当成参数,可以根据一个css选择器来查询一个元素节点对象
+
+
+             */
+            //  document.querySelector('.div2 div').length;//undefined
+            let   div= document.querySelector('.div2 div');//   只会出来第一个
+            let   div1= document.querySelector('.div2');//   
+            let   div2= document.querySelectorAll('.div2 div');// 返回的相当于一个数组   类数组
+
+            console.log(div.length);   //undefined
+            console.log(div.innerHTML);//the first
+
+            console.log(div1.length);   //undefined
+            console.log(div1.innerHTML);//
+        /* <div>the first</div>
+        <div>the second</div> */
+
+            console.log(div2.length);   //2     ----->会变成4
+            console.log(div2.innerHTML);//undefined
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+
+
+    <div class="div2">
+        <div>the first</div>
+        <div>the second</div>
+    </div>
+    <div class="div2">
+        <div>the first2</div>
+        <div>the second2</div>
+    </div>
+    <div class="div3"></div>
+</body>
+</html>
