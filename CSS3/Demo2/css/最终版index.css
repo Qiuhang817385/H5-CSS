@@ -1,0 +1,581 @@
+/*
+ 	bem设计模式
+ 	模块(没有前缀,多个单词#连接)
+ 	元素(模块之后,_连接,可以多个层级)
+ * 
+ * 修饰(某元素,或者某模块特别的状态,必须有一个状态名和状态值,使用_连接)
+ *
+ * 
+ * 比如导航栏的某个值,鼠标滑过的avtive状态 
+ * */
+.header{
+	height: 60px;
+	background-color: #f7f7f7;
+}
+/*logo*/
+.header_wrap{
+	height: 60px;
+	width: 1200px;
+	position: relative;
+	margin: 0 auto;
+}
+.header_logo{
+	width: 150px;
+	height: 38px;
+	/*logo的高度是38,lineheight也是38的话就会居中*/
+	line-height: 38px;
+	font-size: 20px;
+	color: #07111b;
+	/*文本的边距,不占原元素*/
+	text-indent: 50px;
+	/*利用padding的话,需要把整体宽度设置成100*/
+	background: url(../img/logo.png) no-repeat;
+	background-position: left center; 
+	background-size: 38px 38px;
+	/*相对定位,如果整个外边框动的话,也跟着动,但如果不加相对定位直接用margin-top: 19px 那效果不好;*/
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	/*顶部为基准,占据百分50
+	 然后再把顶部定位到,外边距-19的位置
+	 * */
+	margin-top: -19px;
+	/*margin-bottom: 19px;*/
+}
+a{
+	text-decoration: none;
+	
+}
+
+/*导航条*/
+.header_nav{
+	position: absolute;
+	right: 20px;
+	line-height: 38px;
+	top: 50%;
+	margin-top: -19px;
+}
+.header_nav-item{
+	color: #292f35;
+	font-size: 12px;
+	/*内联元素没有行高,内联ai strong,em br i斜体 img input lable q*/
+	display: block;
+	height:38px ;
+	float: left;
+	/*margin-left: 80px;*/
+	padding-left: 80px;
+	line-height: 38px;
+	
+	position: relative;
+	
+	
+	width: 30px;
+	text-align: center;
+}
+
+.header_nav-item:hover{
+	color: #f01400;
+}
+.header_nav-item_status_active{
+	/*text-decoration: underline;*/
+	color: #f01400;
+}
+.header_nav-item_status_active::after111{
+	content: '';
+	display: block;
+	/*xixi*/
+	width: 200%; 
+	height: 2px;
+	position: absolute;
+	background-color:#f01400 ;
+	/*xixi*/
+	left: -15px;
+	bottom: 0;
+	/*text-decoration: underline;*/
+}
+.header_nav-tip{
+	position: absolute;
+	width: 30px; 
+	height: 2px;
+	background-color:red ;
+	left: 0;
+	bottom: 0;
+	margin-left: 77px;
+	transition: all 0.5s;
+}
+/*给元素做修饰*/
+.header_nav-item_custom_button{
+	background: #000 ;
+	color: #f4f4f5;
+	width: 90px;
+	text-align: center;
+	/*圆角*/
+	border-radius: 10px;
+	margin-left: 40px;
+	/*margin:15px;*/
+	/*设置下面这个值,黑框才变小,具体怎么实现的*/
+	padding: 0px;
+}
+/*第一屏模块>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.screen-1{
+	/*margin: 0 auto;*/
+	height: 880px;
+	background-color: #e7e7e7;
+	background: url(../img/bg-screen-1.png) no-repeat center;
+	position: relative;
+	overflow: hidden;
+	/*怎么让背景图整个占满横的方向*/
+	background-size: cover;
+}
+.screen-1_heading{
+	margin: 0 auto;
+	padding: 0;
+	font-weight: normal;
+	color: #4d555d;
+	text-align: center;
+	font-size: 30px;
+	padding-top: 120px;
+}
+.screen-1_heading > b{
+	color: #f01400;
+	margin-right: 50px;
+	font-weight: normal;
+}
+.screen-1_phone{
+	/*怎么解决居中,直接加center*/
+	background: url(../img/screen-1-phone.png) no-repeat center  ;
+	/*margin: 0 auto;*/
+	/*这样浮动之后,页面小的时候不会对页面进行裁剪*/
+	width: 1375px;
+	height: 305px;
+	/*解决大小问题,图片太大*/
+	position: absolute;
+	left: 50%;
+	margin-left: -687px;
+	
+	bottom: 180px;
+}
+.screen-1_shadow{
+	background: url(../img/screen-1-shadow.png) no-repeat center  ;
+	width: 1233px;
+	height: 411px;
+	position: absolute;
+	left: 50%;
+	margin-left: -616px;
+	
+	bottom: 30px;
+}
+/*第二屏>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.screen-2{
+	background-color:rgba(250,250,250) ;
+	margin: 0 auto;
+	/*#fafafa*/
+	height: 800px;
+	position: relative;
+	overflow: hidden;
+	/*怎么让背景图整个占满横的方向*/
+	background-size: cover;
+}
+
+.screen-2_heading{
+	margin: 0 auto;
+	padding: 0;
+	font-weight: normal;
+	color: #4d555d;
+	text-align: center;
+	font-size: 30px;
+	padding-top: 96px;
+}
+.screen-2_heading > b{
+	color: rgba(170,205,237,1);
+	margin-right: 50px;
+	font-weight: normal;
+}
+.screen-2_sub_heading{
+	margin: 0 auto;
+	padding: 0;
+	font-weight: normal;
+	color: #4d555d;
+	text-align: center;
+	font-size: 20px;
+	padding-top: 78px;
+	
+}
+.screen-2_sub_heading > span{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 7px;
+}
+.screen-2_phone{
+	/*怎么解决居中,直接加center*/
+	background: url(../img/bg-screen-2.png) no-repeat center  ;
+	/*margin: 0 auto;*/
+	/*这样浮动之后,页面小的时候不会对页面进行裁剪*/
+	width: 928px;
+	height: 873px;
+	/*解决大小问题,图片太大*/
+	position: absolute;
+	left: 50%;
+	margin-left: -464px;
+	
+	bottom: -450px;
+}
+.screen-2_point{
+	position: absolute;
+	width: 108px;
+	height: 22px;
+	padding-right: 112px;
+	font-size: 22px;
+	line-height: 22px;
+	color: #4d555d;
+	background: url(../img/icon-point-right.png) no-repeat center right;
+}
+.screen-2_point_custom_right{
+	padding: 0 0 0 112px;
+	background: url(../img/icon-point-left.png) no-repeat center left;
+}
+/*调整位置*/
+.screen-2_point_i_1{
+	top: 150px;
+	left: -164px;
+}
+.screen-2_point_i_2{
+	top: 40px;
+	right: 130px;
+}
+.screen-2_point_i_3{
+	top: 240px;
+	right: 50px;
+}
+/*第三屏>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.screen-3{
+	background-color:rgba(167,19,22,1) ;
+	margin: 0 auto;
+	/*#fafafa*/
+	height: 800px;
+	position: relative;
+	overflow: hidden;
+	/*怎么让背景图整个占满横的方向*/
+	background-size: cover;
+}
+/*定义一个大容器,这样不用让文字相对图片了,更加有利于层次感*/
+.screen-3_wrap{
+	width: 1200px;
+	height: auto;
+	margin: 0 auto;
+	position: relative;
+}
+
+.screen-3_heading{
+	margin: 0 auto;
+	padding: 0;
+	font-weight: normal;
+	color: #4d555d;
+	font-size: 40px;
+	padding-top: 96px;
+	text-align: left;
+}
+.screen-3_heading > b{
+	color: white;
+	margin-right: 50px;
+	font-weight: normal;
+}
+.screen-3_sub_heading{
+	color: white;
+	font-size: 20px;
+	padding-top: 25px;
+	text-align: left;
+}
+.screen-3_phone{
+	/*怎么解决居中,直接加center*/
+	background: url(../img/bg-screen-3.png) no-repeat center  ;
+	/*margin: 0 auto;*/
+	/*这样浮动之后,页面小的时候不会对页面进行裁剪*/
+	width: 729px;
+	height: 900px;
+	/*解决大小问题,图片太大*/
+	position: absolute;
+	left: 50%;
+	margin-left: -195px;
+	bottom: -800px;
+}
+.screen-3_features{
+	position: absolute;
+	top: 395px;
+	left: 0;
+	width: 330px;
+	height: 290px;
+	
+}
+.screen-3_features_item{
+	width: 138px;
+	height: 118px;
+	border: 1px solid #cb7173;
+	margin: 0 20px 20px 0;
+	float: left;
+	border-radius: 20px;
+	color: #fff;
+	text-align: center;
+}
+.screen-3_features_item_number{
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	font-size: 36px;
+	padding: 28px 0 4px;
+}
+.screen-3_features_item_desc{
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+}
+
+
+/*第四屏>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.screen-4{
+	background-color:rgba(242,242,242,1) ;
+	margin: 0 auto;
+	/*#fafafa*/
+	height: 800px;
+	position: relative;
+	overflow: hidden;
+	/*怎么让背景图整个占满横的方向*/
+	background-size: cover;
+}
+/*定义一个大容器,这样不用让文字相对图片了,更加有利于层次感*/
+/*这样可以让下面四个模块的那个居中*/
+.screen-4_wrap{
+	width: 1200px;
+	height: auto;
+	margin: 0 auto;
+	position: relative;
+}
+
+.screen-4_heading{
+	margin: 0 auto;
+	padding: 0;
+	font-weight: normal;
+	color: #f01400;
+	font-size: 46px;
+	padding-top: 135px;
+	text-align: center;
+}
+/*.screen-3_heading > b{
+	color: white;
+	margin-right: 50px;
+	font-weight: normal;
+}*/
+.screen-4_sub_heading{
+	color: #464a4f;
+	font-size: 20px;
+	padding-top: 29px;
+	line-height: 29px;
+	text-align: center;
+}
+
+
+
+.screen-4_type{
+	width: 1400px;
+	height: 280px;
+	/*margin: 200px auto;*/
+	position: absolute;
+	top: 304px;
+	/*float: left;*/
+	margin-left: 20px;
+	/*bottom: 0px;*/
+}
+.screen-4_type_item{
+	
+	width: 240px;
+	height: 270px;
+	margin-right: 90px;
+	float: left;
+	position: relative;
+	text-align: center;
+	background-size: cover;
+	/*background-color:rgba(242,242,242,1) ;*/
+}
+.screen-4_type_item_i_1{
+	background: url(../img/phone-1.png) no-repeat left top ;
+	/*图片的背景就是这个颜色,不是背景的颜色*/
+	/*background-color:rgba(242,242,242,1);*/
+	
+}
+.screen-4_type_item_i_2{
+	background: url(../img/phone-2.png) no-repeat left top  ;
+	
+}
+.screen-4_type_item_i_3{
+	background: url(../img/phone-3.png) no-repeat  left top ;
+	
+}
+.screen-4_type_item_i_4{
+	background: url(../img/phone-4.png) no-repeat  left top ;
+	
+}
+.screen-4_type_item_color{
+	width: 100%;
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+	color: #2c3238;
+	bottom: -44px;
+	position: absolute;
+}
+.screen-4_type_item_storage{
+	width: 100%;
+	height: 12px;
+	line-height: 12px;
+	font-size: 12px;
+	color: #a4a9a1;
+	bottom: -66px;
+	position: absolute;
+}
+/*.screen-4_phone2{
+	background: url(../img/phone-2.png) no-repeat   ;
+	width: 240px;
+	height: 270px;
+	float: left;
+	
+}
+.screen-4_phone3{
+	background: url(../img/phone-3.png) no-repeat   ;
+	width: 240px;
+	height: 270px;
+	float: left;
+	
+}
+.screen-4_phone4{
+	background: url(../img/phone-4.png) no-repeat   ;
+	width: 240px;
+	height: 270px;
+	float: left;
+}*/
+
+/*第五屏>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.screen-5{
+	
+	background-color:#d9dde1 ;
+	/*margin: 0 auto;*/
+	/*#fafafa*/
+	height: 800px;
+	position: relative;
+	overflow: hidden;
+	/*怎么让背景图整个占满横的方向*/
+	/*background-size: cover;*/
+}
+.screen-5_bg{
+	/*margin: 0 auto;*/
+	/*把width调整成100%才能显示居中*/
+	width: 1902px;
+	float: left;
+	left: 50%;
+	margin-left: -950px;
+	
+	
+	height: 572px;
+	background: url(../img/bg-screen-5.png) no-repeat center ;
+	background-size: contain;
+	/*为什么图片显示不出来*/
+	/*因为没有给图片div高和宽*/
+	position: absolute;
+	bottom: -:;60px;
+	/*top: 50%;*/
+	/*margin-bottom: 0px;*/
+}
+.screen-5_heading{
+	font-weight: normal;
+	color: red;
+	text-align: center;
+	font-size: 40px;
+	padding-top: 60px;
+}
+.screen-5_sub_heading{
+	font-weight: normal;
+	color: #4d555d;
+	text-align: center;
+	font-size: 20px;
+	padding-top: 30px;
+	
+}
+
+
+
+/*第六屏>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+.screen-6{
+	background:#2b333b url(../img/bg-screen-buy.png) center no-repeat;
+	/*margin: 0 auto;*/
+	/*#fafafa*/
+	/*width: 2560px;*/
+	/*height: 320px;*/
+	
+	/*padding填充居中法*/
+	height: 80px;
+	padding: 120px 0;
+	
+	position: relative;
+	/*overflow: hidden;*/
+	/*怎么让背景图整个占满横的方向*/
+	background-size: cover;
+	text-align: center;
+}
+.screen-6_button{
+	height: 80px;
+	width: 240px;
+	text-align: center;
+	line-height: 80px;
+	font-size: 24px;
+	color: #fff;
+	background-color: #f01414;
+	/*负边距居中法,这次用inline-height*/
+	/*padding居中法*/
+	display: inline-block;
+	
+	border-radius: 30px;
+	
+	transition:all 0.5s;
+}
+.screen-6_button:hover{
+	box-shadow: 0px 0px 10px #fff;
+}
+
+.footer{
+	height: 80px;
+	line-height:80px ;
+	text-align: center;
+	color: #fff;
+	font-size: 12px;
+	background-color: #07111b;
+	
+}
+
+.outline{
+	position: fixed;
+	padding: 5px 10px;
+	bottom: 120px;
+	right: 0;
+	z-index: 3;
+	background-color: #fff;
+	box-shadow: 0 4px 12px rgba(0,0,0,.5);
+}
+.outline-item{
+	display: block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 0;
+	background-color: #fff;
+	margin-top: 5px;
+	border-top: 1px solid #eee;
+	color: #93999f;
+	text-align: center;
+}
+.outline-item:first-child{
+	border-top: 0px;
+	/*none也可以*/
+}
+.outline-item_status_active{
+	color: red;
+}
