@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            /* 高度是wt 然后直接跟50就可以生成多少像素******************************/
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: red;
+        }
+
+        #div2 {
+            width: 100px;
+            /* 高度是wt 然后直接跟50就可以生成多少像素******************************/
+            height: 100px;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            background: rgb(143, 248, 4);
+        }
+    </style>
+    <script>
+        window.onload = function () {
+          let div1 = document.getElementById('div1');
+          div1.onmousedown= function(event){
+            // alert('1')
+            let tl = event.clientX - div1.offsetLeft;
+            let tt = event.clientY - div1.offsetTop;
+            this.onmousemove = function(event){
+                // alert('2')
+                div1.style.left = event.clientX - tl+'px';
+                div1.style.top = event.clientY -tt +'px';
+            }
+            div1.onmouseup = function(){
+              div1.onmousemove = null;
+          }
+            //   div1
+          }
+         
+          
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+        1.鼠标在元素上按下时,开始拖拽   onmousedown
+        2.鼠标移动时,元素跟随鼠标移动   onmousemove
+        3.鼠标松开,元素固定在当前位置   onmouseup
+     -->
+
+    <div id="div1"></div>
+    <!-- <div id="div2"></div> -->
+</body>
+
+</html>
