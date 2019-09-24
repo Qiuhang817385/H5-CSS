@@ -75,6 +75,7 @@
              // 返回#phone的第一个子节点btn06
             btn06.onclick = function(){
                 // firstElementChild获取第一个子节点
+                ////firstElement兼容性不好,不推荐使用
                 let phone  = document.getElementById('phone');
                 alert(phone.firstChild);//text  正确    firstChild就是节点
                 alert(phone.firstElementChild);//object HTMLLIElement  li   
