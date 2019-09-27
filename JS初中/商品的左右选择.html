@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .clr{
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            clear: both;
+        }
+    </style>
+</head>
+<!-- 
+
+    步骤分析
+    1.确定事件,点击事件 :onclick事件
+    2.事件要触发函数,selectOne
+    3.selectOne要做一些操作
+    4.将左边选中的元素移动到右边的select当中
+        1.获取左边被选中的元素
+        2.将选中的元素添加到右边select
+
+ -->
+ <script>
+     window.onload = function(){
+/* 一：js里面方法书写格式不对，HTML页面搜索不到该函数
+
+格式应该是：xx = function (){  执行事件  }；
+
+而不是 funtion xx (){};
+
+
+        不能使用
+        let selectOne=
+
+        要写成 funtion xx (){};
+        需要把window.onload去掉
+ */
+          selectOne= function (){
+            //  获取左边被选中的元素
+            let leftSelect  = document.getElementById('leftSelect');
+            // 获取的时候直接options
+            let options = leftSelect.options;
+            
+            // 找出右侧的select
+            let rightSelect = document.getElementById('rightSelect');
+            
+            /* 遍历找出被选中的option */
+            for (let i = 0; i < options.length; i++) {
+                const option1 = options[i];
+                if(option1.selected){
+            // 把选中的option添加到右边的select当中就可以
+            //因为这个是直接移动节点的方法,之前的节点直接被移动到右边
+            rightSelect.appendChild(option1);
+                }
+            }
+                
+         }
+        //  左边所有的商品移动到右端
+        selectAll = function(){
+              let leftSelect  = document.getElementById('leftSelect');
+                let options = leftSelect.options;
+            
+                let rightSelect = document.getElementById('rightSelect');
+            
+            /* 遍历找出被选中的option */
+            // 为什么反过来就可以了?
+            for (let i = options.length-1; i >=0; i--) {
+                const option1 = options[i];
+                rightSelect.appendChild(option1);
+            }
+            /* 
+            // 为什么反过来就可以了?
+            因为,对option移动的时候,option后一个会顶上前一个
+            并且导致数量发生变化
+            这个时候,只会移除掉第一个和第三个
+            for (let i = 0; i < options.length; i++) {
+                console.log(options.length,i);
+                4 0
+                3 1
+                
+                const option1 = options[i];
+                rightSelect.appendChild(option1);
+            } */
+        }
+         
+     }
+ </script>
+
+<body>
+    <table border="1">
+        <tr>
+            <td>
+                分类名称
+            </td>
+            <td>
+                <input type="text" value="手机数码">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                分类描述
+            </td>
+            <td>
+                <input type="text" value="这里面都是肾">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                分类商品
+            </td>
+            <td>
+                <!-- 左边 -->
+               <div style="float: left">
+                    <select name="" id="leftSelect" multiple="multiple" ondblclick="selectOne()"> 
+                        <option value="">华为</option>
+                        <option value="">小米</option>
+                        <option value="">OPPO</option>
+                        <option value="">锤子</option>
+                    </select><br>
+                    <a href="#" onclick="selectOne()">&gt;&gt;</a><br>
+                    <a href="#" onclick="selectAll()">&gt;&gt;&gt;</a>
+               </div>
+               <!-- 右边 -->
+               <div style="float: right">
+                <select name="" id="rightSelect" multiple="multiple">
+                    <option value="">肾1</option>
+                    <option value="">肾2</option>
+                    <option value="">肾3</option>
+                    <option value="">肾4</option>
+                </select><br>
+                <a href="#">&lt;&lt;</a><br>
+                <a href="#">&lt;&lt;&lt;</a>
+               </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit">
+                
+            </td>
+            
+        </tr>
+    </table>
+</body>
+
+</html>

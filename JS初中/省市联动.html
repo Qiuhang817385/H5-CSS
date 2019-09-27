@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        let provinces = [
+            ["深圳市","东莞市","惠州市","广州市"],
+            ["长沙市","岳阳市","株洲市","湘潭市"],
+            ["厦门市","福州市","漳州市","泉州市"]];
+            // 确定事件:onchange
+            // 2.函数   selectProvince()
+            function selectProvince(){
+                // 得到当前要操作的元素
+                // 得到当前选中的省份
+                // 从数组取出对应的城市信息,动态创建节点,添加到后面
+                let province = document.getElementById("province");
+                // 得到当前选中的是哪个城市
+                // province.value
+
+                let value  = province.value;
+                let cities = provinces[value];
+                let  citySelect  = document.getElementById('city');
+                // 创建前先清空
+                citySelect.options.length = 0;
+
+                for (let i = 0; i < cities.length; i++) {
+                    const cityText = cities[i];
+                    // alert(element);
+
+                    // 动态创建节点
+                    let option1 = document.createElement('option');
+                    // 创建城市文本节点
+                    let textNode = document.createTextNode(cityText);
+
+                    option1.appendChild(textNode);
+
+                    //获取select
+                    citySelect.appendChild(option1);
+                    
+
+                }
+
+
+            }
+            
+    </script>
+</head>
+<body>
+    <select onchange="selectProvince()" name="" id="province">
+        <option value="-1">请选择</option>
+        <option value="0">广东</option>
+        <option value="1">湖南</option>
+        <option value="2">福建</option>
+    </select>
+    <!-- 选择城市 -->
+    <select name="" id="city">
+       
+    </select>
+</body>
+</html>
