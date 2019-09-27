@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 全选和全不选
+        /* 
+            1.单击事件.obclick
+            2.事件触发函数
+                checkAll()
+            3.函数要做的一些事情
+                获得第一个check
+                获取所有分支的状态
+                
+                修改每一个checkbox的状态
+         */
+         
+         window.onload = function(){
+            checkAll = function(){
+                let check1 = document.getElementById('check1');
+                // 得到当前check的状态
+                let checked1 = check1.checked;
+                
+                // 获取除了第一个之外,所有的check
+
+                let checkBoxs = document.getElementsByTagName('input');
+                //或者
+                // document.getElementsByName('checkOne');给需要的input加上name=checkone
+
+
+                for (let i = 1; i < checkBoxs.length; i++) {
+                    const element = checkBoxs[i];
+                    element.checked =checked1; 
+                }
+
+            }
+         }
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td><input type="checkbox" checked onclick="checkAll()" id="check1"></td></tr>
+        <tr><td><input type="checkbox" ></td></tr>
+        <tr><td><input type="checkbox" ></td></tr>
+        <tr><td><input type="checkbox" ></td></tr>
+        <tr><td><input type="checkbox" ></td></tr>
+    </table>
+</body>
+</html>
