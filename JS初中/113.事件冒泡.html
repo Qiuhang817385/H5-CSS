@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+        }
+        #s1{
+            background-color: yellow
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">div<span id="s1">我是一个span</span></div>
+<script>
+    let s1 = document.getElementById('s1');
+    let box1 = document.getElementById('box1');
+    s1.onclick = function(event){
+        alert('span')
+        event.cancelBubble = true;
+    }
+    box1.onclick = function(){
+        alert('box1')
+    }
+
+    document.body.onclick = function(){
+        alert('body');
+
+    }
+    // 后代触发的同时也会触发祖先元素
+
+    // 冒泡,肯定是相同事件  比如都是onclick
+
+    /* 
+    大部分冒泡有用
+
+    栗子:拖拽div    新建大型的div,  当拖拽的div移动到大型的div里面的时候    没有在document里面,但是冒泡,依然可以拖拽
+     */
+     /* 
+        事件对象取消冒泡
+      event.cancelBubble = true;
+      没有兼容性问题
+      */
+
+</script>
+</body>
+</html>
