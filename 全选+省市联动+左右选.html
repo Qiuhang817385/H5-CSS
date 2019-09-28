@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 表格的全选和全不选 -->
+    <section>
+        <article>
+
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="check" id="check1" checked onclick="checkAll()"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id=""></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id=""></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id=""></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id=""></td>
+                </tr>
+            </table>
+        </article>
+    </section>
+    <section>
+        <article>
+            <!-- 左侧到右侧 -->
+            <table border="1" width="500px" height="200px">
+                <tr>
+                    <td>
+                        <select name="" id="selectLeft" multiple="multiple" style="width: 100px"
+                            ondblclick="addRight()">
+                            <option value="">苹果</option>
+                            <option value="">小米</option>
+                            <option value="">大米</option>
+                            <option value="">华为</option>
+                        </select><br>
+                        <!--  -->
+                        <a href="#" onclick="addRight()">&gt;&gt;</a><br>
+                        <a href="#" onclick="addAllRight()">&gt;&gt;&gt;</a>
+                    </td>
+                    <td>
+                        <select name="" id="selectRight" multiple="multiple" style="width: 100px">
+                            <option value="">oppo</option>
+                            <option value="">view</option>
+                            <option value="">三星</option>
+                            <option value="">锤子</option>
+                        </select><br>
+                        <a href="#">&lt;&lt;</a><br>
+                        <a href="#">&lt;&lt;&lt;</a>
+                    </td>
+                </tr>
+            </table>
+        </article>
+    </section>
+    <section>
+        <article>
+            <!-- 省市联动 -->
+
+            <select name="" id="selLeftPro" onchange="selectPro()">
+                <option value="-1">请选择</option>
+                <option value="0">河南</option>
+                <option value="1">河北</option>
+                <option value="2">北京</option>
+            </select>
+            <select name="" id="selRightshi">
+                <option value="">请选择</option>
+            </select><br>
+        </article>
+    </section>
+    <script>
+
+        window.onload = function () {
+
+            checkAll = function () {
+                let check1 = document.getElementById('check1');
+                let checkedStatus = check1.checked;
+                let checkBox = document.getElementsByName('check');
+                for (let i = 1; i < checkBox.length; i++) {
+                    const element = checkBox[i];
+                    element.checked = checkedStatus;
+                }
+            }
+
+            addRight = function () {
+                // alert('1')
+                let leftSelect = document.getElementById('selectLeft');
+                let rightSelect = document.getElementById('selectRight');
+                // let checked = selectLeft.checked;
+                // selectRight.appendChild(checked);
+                // alert(checked);
+                let options = leftSelect.options;
+
+                for (let i = 0; i < options.length; i++) {
+                    const option1 = options[i];
+                    if (option1.selected) {
+                        rightSelect.appendChild(option1);
+                    }
+                    //     alert(i)
+                }
+            }
+
+            addAllRight = function () {
+                // alert('1')
+                let leftSelect = document.getElementById('selectLeft');
+                let rightSelect = document.getElementById('selectRight');
+                // let checked = selectLeft.checked;
+                // selectRight.appendChild(checked);
+                // alert(checked);
+                let options = leftSelect.options;
+
+                for (let i = options.length - 1; i >= 0; i--) {
+                    const option1 = options[i];
+                    rightSelect.appendChild(option1);
+                    //     alert(i)
+                }
+            }
+
+
+            let provinces = [
+                ["深圳市", "东莞市", "惠州市", "广州市"],
+                ["长沙市", "岳阳市", "株洲市", "湘潭市"],
+                ["厦门市", "福州市", "漳州市", "泉州市"]];
+            selectPro = function () {
+
+                let selLeftPro = document.getElementById('selLeftPro');
+                let selRightshi = document.getElementById('selRightshi');
+                // 其实onchange事件可以直接获取到value的值
+                let value = selLeftPro.value;
+                // let optionsPro = selLeftPro.options;
+                let arr = provinces[value];
+                selRightshi.options.length = 0;
+                for (let i = 0; i < arr.length; i++) {
+                    const element = arr[i];
+                    let option1 = document.createElement('option');
+                    let nodeT = document.createTextNode(element);
+                    option1.appendChild(nodeT);
+                selRightshi.appendChild(option1);
+                }
+                // alert(value)
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
