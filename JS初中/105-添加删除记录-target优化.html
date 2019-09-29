@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>添加删除记录练习</title>
+	<!-- <link rel="stylesheet" type="text/css" href="ex_2_style/css.css" /> -->
+	<style>
+	</style>
+	<script type="text/javascript">
+		window.onload = function () {
+			// 删除功能
+			let employeeTable = document.getElementById('employeeTable');
+			employeeTable.onclick = function (event) {
+				// 获取点击的a
+				if (event.target.className === 'del') {
+					// alert('a');
+					let tr = event.target.parentNode.parentNode;
+					let val = tr.getElementsByTagName('td')[0].innerHTML;
+					if (confirm(`是否删除${val}`)) {
+						tr.parentNode.removeChild(tr);
+						return false;
+					} else {
+						return false;
+					}
+				}
+			}
+			let addEmpButton = document.getElementById('addEmpButton');
+			addEmpButton.onclick = function(){
+				// 获取输入框的值
+				let empName = document.getElementById('empName').value;
+				let email = document.getElementById('email').value;
+				let salary = document.getElementById('salary').value;
+				// alert(empName);
+				// 创建节点文本元素
+				let tr = document.createElement('tr');
+				tr.innerHTML = `<td>${empName}</td>
+								<td>${email}</td>
+								<td>${salary}</td>
+								<td><a href="#" class="del">Delete</a></td>`;
+								// 获取tbody
+				let tbody = employeeTable.getElementsByTagName('tbody')[0];
+				tbody.appendChild(tr);
+			}
+		};
+	</script>
+</head>
+
+<body>
+
+	<table id="employeeTable">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>Tom</td>
+			<td>tom@tom.com</td>
+			<td>5000</td>
+			<td><a href="javascript:;" class="del">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Jerry</td>
+			<td>jerry@sohu.com</td>
+			<td>8000</td>
+			<td><a href="deleteEmp?id=002" class="del">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Bob</td>
+			<td>bob@tom.com</td>
+			<td>10000</td>
+			<td><a href="deleteEmp?id=003" class="del">Delete</a></td>
+		</tr>
+	</table>
+
+	<div id="formDiv">
+
+		<h4>添加新员工</h4>
+
+		<table>
+			<tr>
+				<td class="word">name: </td>
+				<td class="inp">
+					<input type="text" name="empName" id="empName" />
+				</td>
+			</tr>
+			<tr>
+				<td class="word">email: </td>
+				<td class="inp">
+					<input type="text" name="email" id="email" />
+				</td>
+			</tr>
+			<tr>
+				<td class="word">salary: </td>
+				<td class="inp">
+					<input type="text" name="salary" id="salary" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="addEmpButton" value="abc">
+						Submit
+					</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+
+</html>
