@@ -97,6 +97,10 @@ bem设计模式
 
     text-align: center;
     border-radius: 3px;
+    transition: all 0.3s;
+}
+.header__nav-item_custom_button:hover{
+    box-shadow: 0 0 10px #000;
 }
 
 
@@ -434,6 +438,7 @@ bem设计模式
     /* background-color: #197ee4; */
     /* height: 320px; */
     height: 80px;
+    /* 320-80/2 */
     padding: 120px 0;
     text-align: center;
 
@@ -445,7 +450,6 @@ bem设计模式
 .screen-buy__button{
     height: 80px;
     width: 240px;
-    text-align: center;
     line-height: 80px;
     font-size: 24px;
     background-color: #f01414;
