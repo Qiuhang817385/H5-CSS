@@ -50,14 +50,7 @@ function setScreenAnimate(screenCls) {
     // screen-1就是当前屏
     // 需要设置动画的元素   
 
-/* 
-**********************************************
-// 这几个参数都是为了,点击屏幕的时候,所利用做的参数
-isSetAnimateClass       let isSetAnimateClass = false;  设置是否有初始化样式,
-isAnimateDone           let isAnimateDone = false;      设置点击一次切换一次
-screen                  let screen = document.querySelector(screenCls); 设置传进来的是哪个屏
-***********************************************
- */
+
     let isSetAnimateClass = false;//是否有初始化子样式
 
 

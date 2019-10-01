@@ -196,3 +196,75 @@
     opacity: 1;
     transform: translate(0,0);
 }
+
+/* 定义帧动画 */
+@-webkit-keyframes bounce{
+	0%,100%{
+		transform: scale(0);
+	}
+	50%{
+		transform: scale(1);
+	}
+}
+/* 使用帧动画 */
+.screen-2__point::before,
+.screen-2__point::after{
+    content: ' ';
+    display: block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255, 0, 0, 0.4);
+    -webkit-animation: bounce 2s infinite;
+
+}
+.screen-2__point::before{
+    -webkit-animation: bounce 2s infinite 1.5s;
+}
+.screen-2__point_i_1::before,
+.screen-2__point_i_1::after
+/* 一个元素既有left又有right    right不可能生效 */
+{
+    /* left: 200px; */
+    /* 两种方法 */
+    left: 100%;
+    margin-left: -20px;
+}
+
+
+
+/* 导航条 */
+.header{
+    transition: all 1s;
+}
+.header_status_black{
+    position: fixed;
+    top: 0;
+    /* 同时设置left和right可以居中 */
+    
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 3;
+}
+.header_status_black .header__logo,
+.header_status_black .header__nav-item{
+    color: #fff;
+}
+.header_status_black .header__nav-item_status_active{
+    color: red;
+}
+/* 大纲*/
+.outline{
+    transition: all 1s;
+    opacity: 0;
+    transform: translate(100%,0);
+}
+.outline_status_in{
+    opacity: 1;
+    transform: translate(0,0);
+}
+
