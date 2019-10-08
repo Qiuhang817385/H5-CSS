@@ -42,8 +42,8 @@
                 let tr = event.clientY - div1.offsetTop;
 
                 document.onmousemove = function (event) {
-                    div1.style.left = event.clientX-lr + 'px';
-                    div1.style.top  = event.clientY-tr + 'px';
+                    div1.style.left = event.clientX -   lr + 'px';
+                    div1.style.top  = event.clientY -   tr + 'px';
                 }
                 //此处应该给document绑定一个事件
                 // div1.onmouseup = function(){

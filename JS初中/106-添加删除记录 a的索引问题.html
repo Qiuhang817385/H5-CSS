@@ -10,34 +10,24 @@
         //点击超链接以后,删除一个员工的信息
         //获取所有的超链接
         let allA = document.getElementsByTagName('a');
-
         //为每个A绑定单击响应函数
         for (let i = 0; i < allA.length; i++) {
             const element = allA[i];
             element.onclick = function(){
 				//*****************************************
-				//会报错	因为此时是异步事件,此时i一直是三,不能使用allA[i]/element
+				//会报错	因为此时是异步事件(dom事件是异步事件),此时i一直是三,不能使用allA[i]/element
                 // let tr = allA[i].parentNode.parentNode;
                 let tr = this.parentNode.parentNode;
-
                 // tr.getElementsByTagName('td')[0].innerHTML
                 // tr.Children[0].innerHTML
-                
                 if(confirm(`是否删除${tr.getElementsByTagName('td')[0].innerHTML}`)){
                     tr.parentNode.removeChild(tr);  
                     return false;
                 }else{
                     return false;
                 }
-
-
-                
             }
         }
-
-
-		
-		
 	};
 
 	

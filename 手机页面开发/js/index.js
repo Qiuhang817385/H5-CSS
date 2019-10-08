@@ -165,7 +165,6 @@ window.onscroll = function () {
         switchNavItemsActive(0,outlineItem,'outline__item_status_active');
         // 完善工作
         navTip.style.left = (0*70)+'px';
-
     }
     
     if (top > 800 * 1 - 100) {
@@ -249,7 +248,6 @@ for (let i = 0; i < navItems.length; i++) {
     setTip(i,navItems);
 }
 setTimeout(() => {
-    
     setScreenAnimateDone('.screen-1');
 }, 800);
 

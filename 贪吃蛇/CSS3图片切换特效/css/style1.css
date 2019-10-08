@@ -12,10 +12,14 @@
 	-webkit-transition:left 0.5s ease-in-out ;
 	   -moz-transition:left 0.5s ease-in-out ;
 	    -ms-transition:left 0.5s ease-in-out ;
-	
 	        transition:left 0.5s ease-in-out ;
 }
+/* 
+	href
+	src
+	url
 
+*/
 .cr-container input.cr-selector-img-1:checked ~ .cr-bgimg,
 .cr-bgimg div span:nth-child(1){
 	background-image: url(../img/1.jpg) ;

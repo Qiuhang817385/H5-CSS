@@ -1,0 +1,162 @@
+.cr-bgimg div span{
+    /* 
+            span是需要和父级的div等高,等宽的
+     */
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     /* 现在这张图片,是cr--gbimg上面的,
+        因为div嵌套着span
+        并且,div设置了overflow-hidden,隐藏
+        这个时候给span设置左偏移,
+        每个span都在本身的div当中偏移出去
+        被隐藏掉
+
+
+        动画的成因
+        要让每一个div下面的
+        第二个span,
+        1.优先级变高
+        2.都向右移动150
+     */
+     left: -150px;
+     top: 0;
+     z-index: 2;
+     text-indent: -999px;
+     /* 给span的背景图片去重 */
+     background-repeat: no-repeat;
+
+    -webkit-transition: left 0.5s ease-in-out;
+    -moz-transition: left 0.5s ease-in-out;
+    -ms-transition: left 0.5s ease-in-out;
+    -o-transition: left 0.5s ease-in-out;
+    transition: left 0.5s ease-in-out;
+    /* 新的问题,当动画生效的时候,直接会看到cr-img上面的底图 */
+     
+}
+/* 背景图片 加给谁,加给cr-bgimg
+
+    加那张图片取决于点谁
+    .cr-container input.cr-selector-img-1就是那个单选框
+    通用兄弟元素选择器是CSS3新增加一种选择器,
+    这种选择器将选择某元素后面的所有兄弟元素,
+    他们也和相邻兄弟元素类似,需要在同一个父元素之中
+*/
+/* 这里实现了,第一个默认被选中,剩余的,背景图片,根据单选框的选择,来选择那个背景图片当做背景图 */
+.cr-container input.cr-selector-img-1:checked ~ .cr-bgimg,
+.cr-bgimg div span:nth-child(1)
+{
+    background: url(../img/1.jpg);
+}
+.cr-container input.cr-selector-img-2:checked ~ .cr-bgimg,
+.cr-bgimg div span:nth-child(2)
+{
+    background: url(../img/3.jpg);
+}
+.cr-container input.cr-selector-img-3:checked ~ .cr-bgimg,
+.cr-bgimg div span:nth-child(3)
+{
+    background: url(../img/4.jpg);
+}
+.cr-container input.cr-selector-img-4:checked ~ .cr-bgimg,
+.cr-bgimg div span:nth-child(4)
+{
+    background: url(../img/5.jpg);
+}
+/* 为每一个span做一个滑动 */
+/* 为什么显示的只是每一张图前面,这个时候还没有给前面加定位 */
+
+.cr-bgimg div:nth-child(1) span{
+    background-position:0 0;
+}
+.cr-bgimg div:nth-child(2) span{
+    background-position:-150px 0;
+}
+.cr-bgimg div:nth-child(3) span{
+    background-position:-300px 0;
+}
+.cr-bgimg div:nth-child(4) span{
+    background-position:-450px 0;
+}
+
+/* 点击之后,只是cr-img背景被改变,整体的span依然覆盖在最上层 */
+/* 第一张被选中,控制第一个span,第二个被选中,控制第二个span */
+/* 定义的动画过程都是一样的,从-150变成0,
+
+*/
+
+
+
+/* 只要点击,当前的按钮,直接飘走当前的页面,不需要考虑是哪一张
+
+飘走之后,   执行下面的逻辑,让span再飘进来
+*/
+.cr-container input:checked ~ .cr-bgimg span{
+    -webkit-animation: slideOut 0.6s ease-in-out;
+    -moz-animation: slideOut 0.6s ease-in-out;
+    -o-animation: slideOut 0.6s ease-in-out;
+    -ms-animation: slideOut 0.6s ease-in-out;
+    animation: slideOut 0.6s ease-in-out;
+
+}
+@-webkit-keyframes slideOut{
+    from{
+        left:0px;
+    }
+    to{
+        left: 150px;
+    }
+}
+@-moz-keyframes slideOut{
+    from{
+        left:0px;
+    }
+    to{
+        left: 150px;
+    }
+}@-o-keyframes slideOut{
+    from{
+        left:0px;
+    }
+    to{
+        left: 150px;
+    }
+}
+@-ms-keyframes slideOut{
+    from{
+        left:0px;
+    }
+    to{
+        left: 150px;
+    }
+}
+@keyframes slideOut{
+    from{
+        left:0px;
+    }
+    to{
+        left: 150px;
+    }
+}
+
+.cr-container input.cr-selector-img-1:checked ~ .cr-bgimg div span:nth-child(1),
+.cr-container input.cr-selector-img-2:checked ~ .cr-bgimg div span:nth-child(2),
+.cr-container input.cr-selector-img-3:checked ~ .cr-bgimg div span:nth-child(3),
+.cr-container input.cr-selector-img-4:checked ~ .cr-bgimg div span:nth-child(4){
+    
+    /*  首先设置优先级 */
+    z-index: 50;
+    
+    left: 0;
+/* 这个时候看到的图片就是span上面的 */
+
+/* 上面刚飘走,上面的动画会包含下面的动画,产生冲突,又会飘回来 */
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    -o-animation: none;
+    animation: none;
+    
+}
+
+

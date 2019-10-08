@@ -53,6 +53,7 @@
             /* 遍历找出被选中的option */
             for (let i = 0; i < options.length; i++) {
                 const option1 = options[i];
+                // 注意是selected
                 if(option1.selected){
             // 把选中的option添加到右边的select当中就可以
             //因为这个是直接移动节点的方法,之前的节点直接被移动到右边
@@ -70,6 +71,7 @@
             
             /* 遍历找出被选中的option */
             // 为什么反过来就可以了?
+            //记得是i-1
             for (let i = options.length-1; i >=0; i--) {
                 const option1 = options[i];
                 rightSelect.appendChild(option1);
@@ -123,6 +125,7 @@
                         <option value="">OPPO</option>
                         <option value="">锤子</option>
                     </select><br>
+                    <!-- 如果不加这个#号,页面刷新,选了跟没选一样 -->
                     <a href="#" onclick="selectOne()">&gt;&gt;</a><br>
                     <a href="#" onclick="selectAll()">&gt;&gt;&gt;</a>
                </div>

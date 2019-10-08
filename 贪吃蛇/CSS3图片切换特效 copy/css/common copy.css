@@ -161,11 +161,12 @@ a{
     margin-left: -17px;
     z-index: -10;
     /* 半透明边框 */
-
     /*第3个0,模糊度 4px 阴影的距离 =边框大小*/
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
-    
+    transition: all 1s;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
+
 /* 被选中的input的兄弟,后面的label */
 .cr-container input:checked +label{
     color: #68abc2;

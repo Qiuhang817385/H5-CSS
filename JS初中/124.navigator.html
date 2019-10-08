@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        浏览器对象模型
+        描述对象都是大写,
+        BOM对象
+            Window
+                -代表整个浏览器的窗口,同时window也是网页的全局对象
+            Navigator:航海家
+                -代表当前浏览器,通过该对象识别不同浏览器
+                //需要优化滚动条的兼容性
+            Location
+                -代表浏览器地址栏信息
+                通过地址栏跳转页面
+            History
+                -代表浏览器历史记录,操作历史记录
+                该对象不能回去到具体的历史记录
+                只能操作向前或者向后翻页
+                只在当前访问有效
+            
+        用的不多    Screen
+            获取移动端屏幕
+            移动端用的比较多
+             Navigator, Location, History都是作为window属性存在的
+
+             可以通过window来使用,也可以直接使用
+
+             navigator
+             window.navigator
+            
+     -->
+
+     <script>
+        // console.log(window.navigator.appName);//Netscape  chrome  firefox ie8 9 10 
+        console.log(window.navigator.userAgent);//Netscape  chrome  firefox ie8 9 10 
+        let ua = navigator.userAgent;
+        // 由于历史原因,navigator大部分属性不能帮助识别浏览器
+        // 一般使用userAgent来判断浏览器或者手机信息
+        // userAgent等价于浏览器
+        /* 
+        是一个字符串
+        这个字符串包含有浏览器信息的内容
+
+         WOW64 64位
+
+         渲染css的引擎Gecko 
+         */
+        if(/chrome/i.test(ua)){
+            console.log("chrome");
+        }
+
+        //MSIE  ie浏览器里面肯定有的子串
+        /* 
+            ie11里面相关标识:   通过userAgent不能处理了
+         */
+        // 可以通过浏览器里面特有的对象来判断浏览器的信息
+
+        /* 
+        currentstyle ie
+        attouchevent ie
+        ActiveXobject   发送ajax请求的  ie
+        有的话,true
+       if( window. ActiveXobject ){
+           ie11     执行的false
+           ie8 9 10 执行的true
+       } 
+       if("ActiveXobject" in window){
+           检查一个对象是否包含某个属性
+       }
+         */
+          
+     </script>
+
+     
+
+</body>
+</html>

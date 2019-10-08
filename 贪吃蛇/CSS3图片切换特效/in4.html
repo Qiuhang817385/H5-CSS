@@ -4,6 +4,33 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+	<style>
+	</style>
+	<script>
+		window.onload = function(){
+			let btn = document.getElementById('btn01');
+			let timer;
+			btn.onclick = function(){
+				// alert('1')
+				btn.disabled = "disabled";
+				btn.innerHTML = `60秒后可重新发送`;
+				clearInterval(timer);
+				let i = 60;
+				 timer = setInterval(function(){
+					i--;
+					btn.innerHTML = `${i}秒后可重新发送`;
+					if(i===50){
+						
+						clearInterval(timer);
+						btn.innerHTML = "发送验证码";
+						btn.disabled = "";
+						
+					}
+				},1000)
+			}
+		}
+	</script>
 	<body>
+		<button id="btn01">发送验证码</button>
 	</body>
 </html>

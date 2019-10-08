@@ -582,8 +582,6 @@
         let oBoxw = oBox[0].offsetWidth;
         // offsetWidth 水平方向 width + 左右padding + 左右border-width
         let cols = 5;
-
-
         loadImg(oImg);
         window.onscroll=function(){
             loadImg(oImg);
@@ -593,7 +591,10 @@
         //ele,元素
         //cols = col = 5
         //元素宽度
-        // oBox,cols,oBoxw
+        // oBox,cols,oBoxw=固定的图片大小
+        // 瀑布流要实现的要求
+            // 1    图片宽度一致
+            //2     图片高度不一致
         function waterFall(ele,col,eleWidth){
             var h = [];
             //ele.length    元素的个数180
@@ -603,9 +604,12 @@
                     // 就是一行图片的个数
 
                     h.push(ele[i].offsetHeight);
+                    //获取每一行图片,水平排列的时候最小值
+                    
                 }else{
+                    //
                     let minH = Math.min.apply(null,h);
-                    let index = h.indexOf(minH);//获取指定高度
+                    let index = h.indexOf(minH);//获取指定的最小高度
                     ele[i].style.position='absolute';
                     ele[i].style.top = minH+'px';
                     ele[i].style.left = index * eleWidth +'px';
@@ -614,7 +618,7 @@
             }
 
         }
-
+                //上面不懂
 
         //图片懒加载
         function loadImg(arr){
@@ -634,9 +638,6 @@
                         // dataset表示自定义属性
                         // 属性名称 data-abc-def 与键值 abcDef 相对应。
                         aftloadimg(arr[i],arr[i].dataset.original);
-                        
-
-
                     }else{
                         aftloadimg(arr[i],arr[i].getAttribute("data-original"));
                     }
