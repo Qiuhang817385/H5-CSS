@@ -1,0 +1,51 @@
+$color: green;
+$fontsize: 12px;
+$bgcolor:red;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    background: white;
+
+    .nav {
+        @extend .block;
+        font-size: $fontsize * 3;
+    }
+
+    .content {
+        @extend .block;
+        font-size: 14px;
+
+        &:hover {
+            background: lighten($color, $amount: 10%) ;
+        }
+    }
+}
+.block{
+    // font-size: $fontsize;
+    color: $bgcolor;
+    // 怎么解决变量名字冲突的问题
+}
+
+
+@mixin box{
+    color:lighten( green,30%);
+
+}
+.box1{
+    @include box;
+    font-size: $fontsize;
+}
+.box2{
+    @include box();
+    font-size: $fontsize*3;
+}
+// 指定一个清除浮动的代码
+@for $i from 1 through 4 {
+    .col-#{$i}{
+        width: (1000px/12)*$i;
+    }
+}

@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  background: white;
+  font-size: 12px;
+  border: 1px solid red;
+  border-radius: 4px;
+}
+.wrapper .nav {
+  font-size: 14px;
+  color: red;
+}
+.wrapper .content {
+  font-size: 24px;
+}
+.wrapper .content:hover {
+  background: #80ff80;
+}
+.box,
+.wrapper .nav,
+.wrapper .content {
+  color: #1aff1a;
+  text-align: center;
+}
+.box1 {
+  color: #1aff1a;
+  text-align: center;
+  font-size: 12px;
+}
+.box2 {
+  color: #1aff1a;
+  text-align: center;
+  font-size: 36px;
+}

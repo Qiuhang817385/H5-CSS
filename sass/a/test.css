@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  background: white;
+}
+.wrapper .nav {
+  font-size: 36px;
+}
+.wrapper .content {
+  font-size: 14px;
+}
+.wrapper .content:hover {
+  background: #00b300;
+}
+.block,
+.wrapper .nav,
+.wrapper .content {
+  color: red;
+}
+.box1 {
+  color: #1aff1a;
+  font-size: 12px;
+}
+.box2 {
+  color: #1aff1a;
+  font-size: 36px;
+}
+.col-1 {
+  width: 83.33333px;
+}
+.col-2 {
+  width: 166.66667px;
+}
+.col-3 {
+  width: 250px;
+}
+.col-4 {
+  width: 333.33333px;
+}

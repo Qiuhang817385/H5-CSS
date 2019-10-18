@@ -1,0 +1,49 @@
+$color:red;
+.test{
+    color:$color;
+}
+$side:left;
+.rounded{
+    border-#{$side}-radius:5px;
+}
+
+// 递归
+/* 
+@mixin gen-col($n) {
+    @if ($n>0){
+        @include gen-col($n - 1);
+        .col-#{$n}{
+            width: 1000px/12*$n;
+        }
+    }
+}
+@include gen-col(5); 
+*/
+    // 下面是生成
+   
+    // 10个元素,动画效果带延迟
+    // 就可以用这个
+
+
+// css网格系统
+// 总宽1000px
+// 需要分几列,就用col-几
+
+// for
+// @for $i from 1 through 4 {
+//     .col-#{$i}{
+//         width: (1000px/12)*$i;
+//     }
+// }
+// @for $i from 1 through 3
+// {
+//     .item-#{$i}
+//     {
+//         width:(20px * $i);
+//     }
+// }
+/* 
+方式1：@for $i from 开始值 through 结束值
+方式2：@for $i from 开始值 to 结束值
+*/
+// 对着呢,注释的问题

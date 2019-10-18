@@ -1,0 +1,54 @@
+@headingFontSize: 16px;
+@fontsize: 12px;
+@bgcolor: green;
+@textGbcolor: red;
+@textColor: #333;
+@linkColor: #0f0;
+// minin
+// 加不加括号都可以,加了括号不会被编译出来
+// 不加括号会被编译
+// extend
+
+.block(@fontsize){
+    font-size: @fontsize;
+    border: 1px solid red;
+    border-radius: 4px;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    background: white;
+
+    .block(@fontsize);
+
+    .nav:extend(.box) {
+        font-size: @fontsize+2px;
+        color: red;
+    }
+    .content {
+        font-size: @fontsize*2;
+        // 不能带参数
+        &:extend(.box);
+        &:hover {
+            background: lighten(@bgcolor, 50%);
+        }
+    }
+}
+
+
+.box{
+    color:lighten( green,30%);
+    text-align: center;
+}
+.box1{
+    .box;
+    font-size: @fontsize;
+}
+.box2{
+    .box();
+    font-size: @fontsize*3;
+}
+
