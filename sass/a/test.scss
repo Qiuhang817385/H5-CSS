@@ -33,7 +33,6 @@ body {
 
 @mixin box{
     color:lighten( green,30%);
-
 }
 .box1{
     @include box;
@@ -48,4 +47,408 @@ body {
     .col-#{$i}{
         width: (1000px/12)*$i;
     }
+}
+
+// 定义默认值
+$widthDefault:10px !default;        //定义全局变量
+.divm{
+    $widthDefault:20px;             //定义局部变量
+    width: $widthDefault;           //调用局部变量
+}
+
+// 对于需要重复使用的就定义成一个变量，对于不需要重复使用的直接用数值就行了。
+
+//变量的作用域
+// 全局变量:选择器、混合宏、继承等”外部定义的变量
+
+
+// 数据类型     Sass中的7种数据类型
+
+//1.数值型
+// line-height:1.5;
+// 初始设font-size:12px;　那么line-height:1.5; 就相当于12*1.5＝18px;
+
+//2.字符串
+// 无引号字符串的目的也是为了与CSS语法一致。
+
+//有引号字符串 
+//  $logoUrl: "images/logo.png";
+    //background-image:url($logoUrl);
+
+//3 布尔值
+// 但是Sass中的布尔值只有2种取值：true和false
+// 无引号字符串
+$a:10px;
+$b:5px;
+divyinhao
+{
+    @if($a>$b)
+    {
+        display:block;
+    }
+    @else
+    {
+        display:none;
+    }
+}
+
+//4.颜色运算,最后都会变成16进制
+// 颜色运算支持加、减、乘、除
+// 并且是分段进行计算的。也就是说，红、绿、蓝这3个部分的颜色是单独进行计算的。
+// Sass颜色函数
+divColor
+{
+    color: (#010203 + #040506);
+    //  color: (#010203 * 2);
+    //  color:(rgb(17,34,51) *2);       结果     color: #224466;
+}
+
+//5.列表值
+// 在Sass中，为我们提供了一种“列表值”的数据类型
+// 可以把它比作“Sass中的数组”。
+// 2种语法
+// 一种是由英文逗号隔开的分隔值     $列表名: 值1, 值2 ,...,值n;
+// 另外一种是由空格隔开的分隔值。   $列表名: 值1  值2  ... 值n;
+// 举例：
+// $margin:20px 40px;
+// $border:1px solid gray;
+
+// margin:$margin;
+// border:$border;
+// Sass列表函数
+
+//6.Map值
+// Map值跟JSON值是非常相似的
+// $变量名:
+// (
+//     键名1:值1,
+//     键名2:值2,
+//     ……
+//     键名n:值n
+// );
+$theme-color: 
+(
+    default: 
+    (
+        bgcolor: #fff,
+        text-color: #444,
+        link-color: #39f
+    ),
+    primary:
+    (
+        bgcolor: #000,
+        text-color:#fff,
+        link-color: #93f
+    ),
+    negative: 
+    (
+        bgcolor: #f36,
+        text-color: #fefefe,
+        link-color: #d4e
+    )
+);
+// Sass Map函数
+divMap{
+    $theme-color: default;
+}
+// 嵌套
+// 选择器的层级少一些，最好不要超过3层
+// 尽量少用选择器嵌套的方式来书写Sass
+// 12.6高性能的选择器
+
+// 对于这些拥有相同前缀的属性，我们可以使用属性嵌套的方式来简化操作。
+divFont
+{
+    width:100px;
+    height:100px;
+    font://***********
+    {
+        family:Arial;
+        size:14px;
+        weight:bold;
+    }
+}
+// 需要嵌套的属性前缀后面一定要加英文冒号“:”
+
+// first-letter和first-line都作用于块级元；
+
+// 伪类嵌套都是结合“&”符号来实现的，编译的时候“&”会替换成相应的选择器。
+// &:after
+// 编译出来的CSS代码如下：
+// .clearfix::after
+.clearfix{*zoom:1;}
+.clearfix::after
+{
+    clear:both;
+    content:"";
+    display:block;
+    height:0;
+    visibility:hidden;
+}
+// 清除浮动最常用的方法
+
+
+
+// 变量，我们一般都是用于属性值的，是不能直接用于选择器名中的
+// @for $i from 1 through 3
+// {
+//     .item-$i             .item-#{$i}正确
+//     {
+//         width:10px * $i; 
+//     }
+// }
+// 不能
+// 插值用于“属性名”
+$border:border;
+divBorder
+{
+    #{$border}-width:1px;
+    #{$border}-style:solid;
+    #{$border}-color:red;
+}
+
+// @for $i from 1 through 3
+// {
+//     .item-#{$i}
+//     {
+//         border:$ipx solid red;
+//     }
+// }
+
+
+// 这是因为border属性的属性值是一个列表值，
+// 而不是单纯的一个数字或字符串。也就是说，
+// 如果属性值是一个简单数字或者字符串，我们可以使用变量的方式来实现。
+// 但如果属性值是一个复杂的数据类型，我们就必须使用插值的方式来实现。
+// 总而言之，如果你想要在Sass中构造一个新的选择器名、
+// 新的属性名以及新的属性值，
+// 首先考虑的应该是使用“插值#{}”来实现。
+ 
+
+// 在Sass中，共有3种注释方式：
+//注释内容；这种注释方式在编译后不会保留下来。
+/*注释内容  这种注释方式在编译之后会保留下来*/
+/*!注释内容 注释方式用得很少，一般在CSS文件顶部为了声明版权信息才会使用*/
+// 压缩工具会删除所有的注释，有些时候为了保留一些版权声明的注释说明，可以采用以下方式：
+
+
+
+//加法运算,减法运算
+// 由于“100px”和“20px”的单位相同，都是px。
+// 所以在Sass中，这两个可以做加法运算,减法运算。
+//做加法运算,减法运算时,需要运算单位相同。如果不相同就会报错，编译不通过。
+
+
+
+// 做减法,减号前后用空格
+//在Sass中，如果是做减法运算是“变量”而不是“数值”的时候，我们要注意减号“-”前后一定要有空格。
+// 减号前后有空格
+
+// 乘法运算时，只能有一个数值带单位，另外一个数值只能是不带单位的数字
+// 一个带数字,一个不带数字
+
+// 两个都带单位会报错
+// Sass除法
+// “/”在CSS中已经作为一种符号来使用了
+// font:Arial 12px/1.5em
+// 想要做除法运算，我们需要在外面添加一个“小括号()”。
+divChu
+{
+    width:(100px/2);
+}
+
+// 如果做除法运算中是“变量”而不是“数值”时，“/”会被自动识别为除法
+// width:$width/2;
+
+
+
+// 在使用Sass的过程中，“/”这个符号被当做除法运算时有以下3种情况：
+
+// （1）数值被小括号()包含；
+// （2）数值是另外一个数学表达式的一部分；
+// （3）数值或它的任意部分存储在一个变量中或者函数的返回值；
+
+$height:100px;
+divChu2
+{
+    font:20px/10px;                 //纯?????CSS，不是除法运算
+    width:(20px/10px);              //使?????用了小括号，是除法运算，符合第1点
+    height:$height/2;               //使用了变量，是除法运算，符合第3点
+    line-height:round(1.5)/2;       //使用了函数，是除法运算，符合第3点
+    margin-left:10px + 10px/2px;    //使用了加号，是除法运算，符合第2点
+}
+
+
+// 我们可以使用“+”（加号）来实现字符串的拼接。
+// 一句话概括：结果字符串是否有引号，取决于左边字符串是否有引号。
+
+divaDD::before
+{
+    content: "Welcome to " + lvyestudy;
+    font:sans- + "serif";
+}
+
+
+//sass代码重用
+
+// （1）继承“@extend”；
+// （2）占位符“%placeholder”；
+// （3）混合宏“@mixin”；
+
+
+
+/* 
+如果我们的HTML中没有任何一个元素使用“.btn”的话，
+“.btn”存在的唯一目的就是仅仅用来给“.btn-primary”和“.btn-second”继承。
+也就是说，“.btn”这个类在编译出来的CSS中是多余的。
+那有没有更好的办法来实现我们预期效果呢？
+ */
+// 在新版本的Sass中，
+// 引入了“占位符%placeholder”来优化“继承@extend”的输出。
+%btn
+{
+    padding:6px 10px;
+    border:1px solid silver;
+    font-size:14px;
+}
+.btn-primary
+{
+    @extend %btn;
+    color:white;
+    background-color:red;
+}
+.btn-second
+{
+    @extend %btn;
+    color:orange;
+    background-color:green;
+}
+
+// .btn, .btn-primary, .btn-second包含基类
+// 不包含基类.btn-primary,.btn-second
+// 使用占位符的输出结果是不包含基类的。
+
+
+// “占位符%placeholder”并非用来替换“继承@extend”的，
+// 而是用来配合“继承@extend”来使用的。
+
+// （1）需要保留基类的：只使用@extend来实现；
+// （2）不需要保留基类的：使用@extend配合%placeholder来实现；
+
+
+// Sass中的混合宏跟C语言的宏是非常相似的。
+// 所谓的“宏”，指的是可重用的代码块。
+
+// 带默认值
+@mixin center($width:20px,$height:20px)
+{
+    width: $width;
+    height: $height;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -($height) / 2;
+    margin-left: -($width) / 2;
+}
+divCenter
+{
+    @include center(100px,80px);
+}
+divCenter2{
+    @include center;            //默认值
+}
+// 这个混合宏里面的CSS代码是一个功能代码块，
+// 是用来同时实现元素的水平居中和垂直居中的。
+// 在实际开发中，对于这些功能代码块，
+// 我们都是配合混合宏（mixin）来使用，非常的简单快速
+
+// （1）继承和混合宏都能实现相同代码块的重用，极大提高开发效率；
+// （2）继承的使用一般不存在代码冗余，而混合宏的使用会存在代码冗余；
+// （3）继承不可以传递参数，而混合宏可以传递参数；
+
+// 混合宏有一个致命的缺点：
+// 编译出来的CSS不会把相同的代码块合并，造成代码冗余。
+
+// 也有一个明显的优点，
+// 那就是：可以使用传递参数的方式来封装功能代码块。
+
+
+// 流程控制语句
+// @if语句”来进行条件选择判断。Sass的条件选择语句共有3种
+// （1）@if…（单向选择）；
+// （2）@if…@else…（双向选择）；
+// （3）@if…@else if…（多向选择）；
+
+divCom{
+    @if(10px>5px){
+        border:1px solid gray;
+    }
+}
+// @if…@else…
+@mixin checkBox ($boolean:true){
+    @if ($boolean) {
+        display: block;
+        
+    }@else{
+        display: none;
+    }
+    
+}
+.block1{
+    @include checkBox;
+}
+.block2{
+    @include checkBox(false);
+}
+// @if…@else if…”这种多向选择的语句在Sass用得比较少，我们只需要简单了解一下即可。
+
+// @while循环
+$i:3;
+@while ($i>0)
+{
+    .item-#{$i}
+    {
+        width: (20px + $i);
+    }
+    $i : ($i - 1);   //递减操作
+}
+
+// Sass中的each循环跟jQuery中的each循环很相似
+$list:logo,banner,btn;
+@each $var in $list
+{
+    .#{$var}-img
+    {
+        background-image:url("images/#{$var}.png");
+    }
+}
+
+$list:sprite1,sprite2,sprite3;
+// 下标从1开始的
+%spriteAll
+{
+    background:url("images/sprite.png") no-repeat;
+}
+@each $var in $list
+{
+    .#{$var}
+    {
+        @extend %spriteAll;
+        background-position: 0 index($list,$var) * (-10px);
+    }
+}
+
+
+
+$properties:(margin,padding);
+@mixin setValue($side , $value)
+{
+    @each $prop in $properties
+    {
+        #{$prop}-#{$side}:$value;
+    }
+}
+.login-box
+{
+    @include setValue(top , 14px);
 }

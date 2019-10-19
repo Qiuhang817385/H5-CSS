@@ -1,4 +1,4 @@
-body {
+﻿body {
   margin: 0;
   padding: 0;
 }
@@ -38,4 +38,126 @@ body {
 }
 .col-4 {
   width: 333.33333px;
+}
+.divm {
+  width: 20px;
+}
+divyinhao {
+  display: block;
+}
+divColor {
+  color: #050709;
+}
+divFont {
+  width: 100px;
+  height: 100px;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+divBorder {
+  border-width: 1px;
+  border-style: solid;
+  border-color: red;
+} /*!注释内容 注释方式用得很少，一般在CSS文件顶部为了声明版权信息才会使用*/
+divChu {
+  width: 50px;
+}
+divChu2 {
+  font: 20px/10px;
+  width: 2;
+  height: 50px;
+  line-height: 1;
+  margin-left: 15px;
+}
+divaDD::before {
+  content: "Welcome to lvyestudy";
+  font: sans-serif;
+}
+.btn-primary,
+.btn-second {
+  padding: 6px 10px;
+  border: 1px solid silver;
+  font-size: 14px;
+}
+.btn-primary {
+  color: white;
+  background-color: red;
+}
+.btn-second {
+  color: orange;
+  background-color: green;
+}
+divCenter {
+  width: 100px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -50px;
+}
+divCenter2 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+divCom {
+  border: 1px solid gray;
+}
+.block1 {
+  display: block;
+}
+.block2 {
+  display: none;
+}
+.item-3 {
+  width: 23px;
+}
+.item-2 {
+  width: 22px;
+}
+.item-1 {
+  width: 21px;
+}
+.logo-img {
+  background-image: url("images/logo.png");
+}
+.banner-img {
+  background-image: url("images/banner.png");
+}
+.btn-img {
+  background-image: url("images/btn.png");
+}
+.sprite1,
+.sprite2,
+.sprite3 {
+  background: url("images/sprite.png") no-repeat;
+}
+.sprite1 {
+  background-position: 0 -10px;
+}
+.sprite2 {
+  background-position: 0 -20px;
+}
+.sprite3 {
+  background-position: 0 -30px;
+}
+.login-box {
+  margin-top: 14px;
+  padding-top: 14px;
 }
