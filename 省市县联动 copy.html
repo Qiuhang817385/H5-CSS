@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 表格的全选和全不选 -->
+
+
+    <section>
+        <article>
+            <!-- 省市联动 -->
+
+            <select name="" id="selLeftPro" onchange="selectPro(this)">
+                <option value="-1">请选择省</option>
+                <option value="0">河南</option>
+                <option value="1">河北</option>
+                <option value="2">北京</option>
+            </select>
+            <select name="" id="selRightshi" onchange="selectXian()">
+                <option value="">请选择市</option>
+            </select>
+            <select name="" id="selRightXian" >
+                <option value="">请选择县</option>
+            </select><br>
+        </article>
+    </section>
+    <script>
+        window.onload = function () {
+            let provinces = [
+                ["深圳市", "东莞市", "惠州市", "广州市"],
+                ["长沙市", "岳阳市", "株洲市", "湘潭市"],
+                ["厦门市", "福州市", "漳州市", "泉州市"]
+            ];
+            let xian = [
+                ["科比", "LoL", "永年县", "东北棒子"],
+                ["酸奶", "荣耀", "MAC", "华为"],
+                ["龙卷风", "女", "猫和老鼠", "柯南"]
+            ]
+            selectPro = function (e) {
+                // let selLeftPro = document.getElementById('selLeftPro');
+                // let selRightshi = document.getElementById('selRightshi');
+                // let value = selLeftPro.value;
+                // let arr = provinces[value];
+                // // 本质上创建节点然后附加
+                // selRightshi.options.length = 0;
+                // let selRightXian = document.getElementById('selRightXian');
+                // for (let i = 0; i < arr.length; i++) {
+                //     const element = arr[i];
+                //     let option1 = document.createElement('option');
+                //     option1.value = i;
+                //     let nodeT = document.createTextNode(element);
+                //     option1.appendChild(nodeT);
+                //     selRightshi.appendChild(option1);
+                // }
+                alert(e)
+                console.log(e);
+                
+            }
+            selectXian = function () {
+                // let selRightshi = document.getElementById('selRightshi');
+                // let selRightXian = document.getElementById('selRightXian');
+                // let value = selRightshi.value;
+                // let arr = xian[value];
+                // // 本质上创建节点然后附加
+                // selRightXian.options.length = 0;
+                // for (let i = 0; i < arr.length; i++) {
+                //     const element = arr[i];
+                //     let option1 = document.createElement('option');
+                //     option1.value = i;
+                //     let nodeT = document.createTextNode(element);
+                //     option1.appendChild(nodeT);
+                //     selRightXian.appendChild(option1);
+                // }
+            }
+        }
+    </script>
+</body>
+
+</html>
