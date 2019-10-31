@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            检查一个字符串是否含有点.
+        .   点是    查找单个字符,除了换行和行结束符
+            即任意字符
+         */
+         let reg = /./;
+         console.log(reg.test("b"));
+        //  true
+         let reg2 = /\./;
+        //  注意,不能使用let reg = new RegExp("\.")来创建
+        // 原因,参数是一个字符串
+        // 语法 RegExp("\\.");
+        //  利用转义字符来写
+        // \\同理  代表一个 \
+         console.log(reg2.test("b"));
+         console.log(reg2.test("."));
+
+        //(不用构造函数形式) 在字符里面检验的时候，.可以只写一个,但是\\必须写俩
+        
+        /* 
+
+            \w  任意字母,数字,下划线[A-z0-9_]
+            \W  除了字母数字下划线[^A-z0-9_]
+            \d  任意数字[0-9]
+            \D  除了数组[^0-9]
+            \s  空格
+            \S  除了空格
+            \b  单词边界
+            \B  除了单词边界
+
+
+         */
+
+        //  检查单词是否有child(独立);
+        let reg4 = /child/;
+        console.log(reg4.test("children"));/* 严格来说不算有child */
+        // 单词边界child单词边界
+
+        let  reg5 = /\bchild\b/;
+        console.log(reg5.test("children"));
+
+
+
+        // 接受一个用户的输入
+        // let str = prompt("请输入一个用户名:");
+        let str = " ad im   ";
+        // console.log(str);
+        
+        // 用户可能不小心加了空格,完全没有存在的意义
+        // 自动去除字符串的空格
+
+        // 方法:使用空串替换空格
+        let newStr = str.replace(/\s/g,"");
+        console.log(newStr);/* 去除掉所有的空格 */
+
+        // 不去除中间的空格
+
+        // 去除开头的空格
+        // let newStr2 = str.replace(/^\s/g,"");
+        // /g没有用,因为只有1个开头的空格
+        // 开头0个或者多个空格
+        // let newStr2 = str.replace(/^\s*/,"");
+
+        // 去除结尾的空格
+        // let newStr2 = str.replace(/\s*$/,"");
+
+        // /^\s*/   /\s*$/
+        let newStr3 = str.replace(/^\s*|\s*$/g,"")
+        console.log(newStr3);
+        
+    </script>
+</body>
+</html>

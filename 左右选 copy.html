@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 表格的全选和全不选 -->
+
+    <section>
+        <article>
+            <!-- 左侧到右侧 -->
+            <table border="1" width="500px" height="200px">
+                <tr>
+                    <td>
+                        <select name="" id="selectLeft" multiple="multiple" style="width: 100px"
+                            ondblclick="addRight()">
+                            <option value="">苹果</option>
+                            <option value="">小米</option>
+                            <option value="">大米</option>
+                            <option value="">华为</option>
+                        </select><br>
+                        <!--  -->
+                        <a href="#" onclick="addRight()">&gt;&gt;</a><br>
+                        <a href="#" onclick="addAllRight()">&gt;&gt;&gt;</a>
+                    </td>
+                    <td>
+                        <select name="" id="selectRight" multiple="multiple" style="width: 100px">
+                            <option value="">oppo</option>
+                            <option value="">view</option>
+                            <option value="">三星</option>
+                            <option value="">锤子</option>
+                        </select><br>
+                        <a href="#">&lt;&lt;</a><br>
+                        <a href="#">&lt;&lt;&lt;</a>
+                    </td>
+                </tr>
+            </table>
+        </article>
+    </section>
+
+    <script>
+        window.onload = function () {
+
+
+
+            addRight = function () {
+                // alert('1')
+                let leftSelect = document.getElementById('selectLeft');
+                let rightSelect = document.getElementById('selectRight');
+                // let checked = selectLeft.checked;
+                // selectRight.appendChild(checked);
+                // alert(checked);
+                let options = leftSelect.options;
+
+                for (let i = 0; i < options.length; i++) {
+                    const option1 = options[i];
+                    if (option1.selected) {
+                        rightSelect.appendChild(option1);
+                    }
+                    //     alert(i)
+                }
+            }
+
+            addAllRight = function () {
+                // alert('1')
+                let leftSelect = document.getElementById('selectLeft');
+                let rightSelect = document.getElementById('selectRight');
+                // let checked = selectLeft.checked;
+                // selectRight.appendChild(checked);
+                // alert(checked);
+                let options = leftSelect.options;
+
+                for (let i = options.length - 1; i >= 0; i--) {
+                    const option1 = options[i];
+                    rightSelect.appendChild(option1);
+                    //     alert(i)
+                }
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

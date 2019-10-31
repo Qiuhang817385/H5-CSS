@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建一个正则表达式检测是否有aaaaa
+
+        let reg = /a{5}/
+        // 量词
+        /* 
+            通过量词可以设置一个内容出现的次数
+            -{n}    出现n次
+            -{m,n}  出现m到n次
+            -{m,}   m次以上
+
+         */
+        console.log(reg.test("aaaaaac"));
+        // /ab{3}c/
+        // 对ab起作用
+        let reg2 = /(ab){3}/;
+        console.log(reg2.test("ababab"));
+
+        let reg3 = /a{1,3}/;
+        console.log(reg3.test("ac"));
+        console.log(reg3.test("c"));
+        console.log(reg3.test("aaaac"));
+        
+
+        // + * ?    也是两次,相当于!
+        //至少一个  +   == {1,}
+        // 0或多    *   == {0,} 有没有都行
+        // 0或1     ?   == {0,1}
+
+
+
+        // 检查是否以a开头
+        let reg4 = /^a/;
+        console.log(reg4.test("abc"));
+
+        // 检查是否以a结尾
+        let reg5 = /a$/;
+        console.log(reg5.test("abca"));
+
+        // a既是开头,又是结尾,如果同时使用^和$,那么子串必须完全符合
+        let reg6 = /^a$/;
+        let reg7 = /^a|a$/;
+        console.log(reg6.test("abca"));
+        console.log(reg6.test("a"));
+
+        // 检查是否是一个手机号码
+        /* 
+            规则:
+            11位
+            以1开头
+            第二个非0,1,2/  3-9任意数字
+            3位以后任意数字
+         */
+        let PhoneNumber = "18330071451";
+
+        
+
+        let reg8 = /^1[3-9][0-9]{9}$/;
+
+        console.log(reg8.test(PhoneNumber));
+        
+        
+    </script>
+</body>
+</html>

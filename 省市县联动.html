@@ -10,8 +10,6 @@
 
 <body>
     <!-- 表格的全选和全不选 -->
-
-
     <section>
         <article>
             <!-- 省市联动 -->
@@ -25,13 +23,14 @@
             <select name="" id="selRightshi" onchange="selectXian()">
                 <option value="">请选择市</option>
             </select>
-            <select name="" id="selRightXian">
+            <select name="" id="selRightXian" onchange="addToJson()">
                 <option value="">请选择县</option>
             </select><br>
         </article>
     </section>
     <script>
         window.onload = function () {
+            var arrJson = [];
             let provinces = [
                 ["深圳市", "东莞市", "惠州市", "广州市"],
                 ["长沙市", "岳阳市", "株洲市", "湘潭市"],
@@ -40,12 +39,18 @@
             let xian = [
                 ["科比", "LoL", "永年县", "东北棒子"],
                 ["酸奶", "荣耀", "MAC", "华为"],
-                ["龙卷风", "女", "猫和老鼠", "柯南"]
+                ["龙卷风", "男", "猫和老鼠", "柯南"],
+                ["兰格", "图片", "网站", "png"]
             ]
             selectPro = function () {
+                arrJson.length = 0;
                 let selLeftPro = document.getElementById('selLeftPro');
                 let selRightshi = document.getElementById('selRightshi');
                 let value = selLeftPro.value;
+                // *****************************************8
+                // value是字符串类型
+                // *****************************************8
+                arrJson.push(selLeftPro.options[parseInt(value) + 1].text);
                 let arr = provinces[value];
                 // 本质上创建节点然后附加
                 selRightshi.options.length = 0;
@@ -63,8 +68,8 @@
             selectXian = function () {
                 let selRightshi = document.getElementById('selRightshi');
                 let selRightXian = document.getElementById('selRightXian');
-                let value = selRightshi.value;
-                let arr = xian[value];
+                let value2 = selRightshi.value;
+                let arr = xian[value2];
                 // 本质上创建节点然后附加
                 selRightXian.options.length = 0;
                 for (let i = 0; i < arr.length; i++) {
@@ -75,9 +80,35 @@
                     option1.appendChild(nodeT);
                     selRightXian.appendChild(option1);
                 }
+                // 第一次,是1,添加,第二次改变,是3,删除2个,添加
+                if (arrJson.length === 1) {
+                    arrJson.push(selRightshi.options[parseInt(value2)].text);
+                } else {
+                    arrJson.pop();
+                    arrJson.pop();
+                    arrJson.push(selRightshi.options[parseInt(value2)].text);
+                }
+
+            }
+            addToJson = function () {
+                let selRightXian = document.getElementById('selRightXian');
+                let value = selRightXian.value;
+                // 如果选择的时候2个,那么添加,否则,去掉一个再添加
+                if (arrJson.length === 2) {
+                    arrJson.push(selRightXian.options[parseInt(value)].text);
+                } else {
+                    arrJson.pop();
+                    arrJson.push(selRightXian.options[parseInt(value)].text);
+                }
+                console.log(arrJson);
             }
         }
     </script>
 </body>
+<!-- 
+    Failed to execute 'add' on 'HTMLSelectElement': 1 argument required, but only 0 present.
+    at HTMLSelectElement.onchang
+    其实这里的错误就是与内置的removeChild()函数重名了。
+ -->
 
 </html>

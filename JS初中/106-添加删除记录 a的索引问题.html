@@ -15,6 +15,7 @@
             const element = allA[i];
             element.onclick = function(){
 				//*****************************************
+				// 解决方式,闭包
 				//会报错	因为此时是异步事件(dom事件是异步事件),此时i一直是三,不能使用allA[i]/element
                 // let tr = allA[i].parentNode.parentNode;
                 let tr = this.parentNode.parentNode;

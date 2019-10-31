@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 表格的全选和全不选 -->
+    <section>
+        <article>
+
+            <form action="javascript:;" id="myForm">
+                <input type="checkbox" name="check" id="check1" checked onclick="checkAll()">
+
+            </form>
+        </article>
+    </section>
+    <script>
+        window.onload = function () {
+            let arrJson = [];
+            let data = ["深圳市", "东莞市", "惠州市", "广州市"];
+
+            let myForm = document.getElementById('myForm');
+            for (let i = 0; i < data.length; i++) {
+                const element = data[i];
+                let inputEle = document.createElement('input');
+                inputEle.type = 'checkbox';
+                inputEle.name = 'check';
+                let textNode = document.createTextNode(element);
+                inputEle.appendChild(textNode);
+                myForm.appendChild(inputEle);
+            }
+
+
+            checkAll = function () {
+                let check1 = document.getElementById('check1');
+                let checkedStatus = check1.checked;
+                let checkBox = document.getElementsByName('check');
+                for (let i = 1; i < checkBox.length; i++) {
+                    checkBox[i].checked = checkedStatus;
+                    // console.log(checkBox[i].checked);
+                    // 大概原理差不多.就是怎么联系到后面的值
+                    if (checkBox[i].checked) {
+                        arrJson.push(checkBox[i]);
+                    } else {
+                        arrJson.pop();
+                    }
+                }
+                console.log(arrJson);
+            }
+
+            // 几个概念,
+            // appendchild,children,child
+
+        }
+    </script>
+</body>
+
+</html>

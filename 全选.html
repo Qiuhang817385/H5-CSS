@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 表格的全选和全不选 -->
+    <section>
+        <article>
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="check" id="check1" checked onclick="checkAll()"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id="">第一列</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id="">第二列</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id="">第三列</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="check" id="">第四列</td>
+                </tr>
+            </table>
+        </article>
+    </section>
+
+    <script>
+        window.onload = function () {
+            checkAll = function () {
+                let check1 = document.getElementById('check1');
+                let checkedStatus = check1.checked;
+                let checkBox = document.getElementsByName('check');
+                for (let i = 1; i < checkBox.length; i++) {
+                    const element = checkBox[i];
+                    element.checked = checkedStatus;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

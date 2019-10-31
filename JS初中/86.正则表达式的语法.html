@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 略微麻烦
+        //  使用构造函数创建更加灵活
+        // 第一个参数可以传一个字符串变量
+        // var reg = new RegExp("a");
+        // 语法糖
+
+        /* 
+            使用字面量来创建正则表达式
+            语法:var 变量 = /正则表达式/匹配模式
+            没有引号
+            
+         */
+        reg = /a/i;
+
+        // 创建一个正则表达式来检查表达式是否有a或者b
+
+        // 使用一个竖线表示或者的关系
+        let reg2 = /a|b/;
+        // []里面也是或者的关系
+
+
+        // 创建一个正则表达式来检查一个字符串当中是否有字母
+        // [a-z]任意小写字母
+        // [A-Z]任意大写字母
+        // [A-z]任意字母
+        let reg3 = /[a-z]/;
+
+
+        //检查一个字符串是否有abc或者adc或者aec
+        // 以a开头  以c结尾
+        let reg4 = /a[bde]c/;
+
+
+
+        // 除了ab
+        // 只要去掉ab还有,就是true
+        let reg5 =/[^ab]/;
+
+
+        // 任意数字
+        let reg6 = /[0-9]/;
+        // 非任意数字
+        let reg6 = /[^0-9]/;
+        
+
+
+
+
+
+
+
+
+        //  onkeydown
+    </script>
+</body>
+
+</html>

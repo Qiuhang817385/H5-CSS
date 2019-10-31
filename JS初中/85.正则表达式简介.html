@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 
+
+        今天都干了啥
+
+        解决了省市县联动的数组问题
+        解决了歌莉娅的ie兼容性问题,包括重写js,a的索引值问题和图片
+        复习了全选和左加右加,其中左加右加注意全加时候的循环顺序
+        复习appendchild和children
+        复习了二级菜单的bug
+        复习了图片格式
+        str.lastIndexOf('.')
+        str.substring(a,b)
+
+
+     -->
+    <title>Document</title>
+    <!-- 
+        干嘛的
+        用户名  -admin
+                -admin@atugui.com 正确
+                -admin@.com 错误
+                -adminatguigu.com 错误
+            邮件的规则
+                1.前面可以是>>>>乱七八糟
+                2.后面一个@
+                3.后面乱七八糟
+                4.跟着.com或者其他东西
+
+
+        --正则用于定义规则
+            计算机可以根据正则表达式来检查字符串是否符合规则
+                或者提取出来
+            
+     -->
+</head>
+
+<body>
+
+    <script>
+        // 创建正则表达式对象
+        /* 
+            // 两个都是字符串格式
+            new RegExp("正则表达式","匹配模式");
+         */
+        var reg = new RegExp("a");
+        // 检查字符串是否含有a
+        //(没有匹配规则)严格区分大小写  
+        // console.log(reg);//  /a/
+
+        // 匹配模式:忽略大小写
+        // i忽略大小写        
+        // g全局
+
+
+
+
+        let str = "a";
+
+        let regIgonre = RegExp("a","i")
+
+        /* 
+            正则表达式的方法
+            test
+            可以来检查一个字符串是否符合正则表达式的规则
+            如果符合返回true
+         */
+        console.log(reg.test(str)); //true
+        console.log(reg.test("abcd")); //true
+        console.log(reg.test("Abcd")); //false
+        console.log(regIgonre.test("Abcd")); //true
+        
+
+
+
+
+        // typeof reg   //object
+        // a就是一个正则表达式
+    </script>
+</body>
+
+</html>
