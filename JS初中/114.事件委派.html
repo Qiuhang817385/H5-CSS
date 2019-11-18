@@ -1,64 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<style>
-    li{
-        background: red
-    }
-</style>
-<body>
-    <button id="btn01">按钮</button>
-    <ul id="u1">
-        <li><a href="javascript:;" class="link">超链接1</a></li>
-        <li><a href="javascript:;" class="link">超链接2</a></li>
-        <li><a href="javascript:;" class="link">超链接3</a></li>
-        <li><a href="javascript:;" class="link">超链接4</a></li>
-    </ul>
-    <script>
-        window.onload = function(){
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+	</head>
+	<style>
+		li {
+			background: red
+		}
+	</style>
+	<body>
+		<button id="btn01">按钮</button>
+		<ul id="u1">
+			<li><a href="javascript:;" class="link link2">超链接1</a></li>
+			<li><a href="javascript:;" class="link link1">超链接2</a></li>
+			<li><a href="javascript:;" class="link">超链接3</a></li>
+			<li><a href="javascript:;" class="link">超链接4</a></li>
+		</ul>
+		<script>
+			window.onload = function() {
 
-            /* let allA = document.getElementsByTagName('a');
-            for (let i = 0; i < allA.length; i++) {
-                const element = allA[i];
-                    element.onclick = function(){
-                        // 
-                        alert('a')
-                    }
-            }
-            不太好,给父元素绑定
-             */
-            let u1 = document.getElementById('u1');
-            let btn = document.getElementById('btn01');
-            btn.onclick = function(){
-                // alert('ss')
-                let li = document.createElement('li');
-                li.innerHTML = `<a href="javascript:; " class="link">超链接1</a>`;
-                u1.appendChild(li);
-            }
-            /* 
-            事件的委派,将事件统一绑定给共同的祖先元素,
-            然后会一直冒泡到祖先元素
+				/* let allA = document.getElementsByTagName('a');
+				for (let i = 0; i < allA.length; i++) {
+				    const element = allA[i];
+				        element.onclick = function(){
+				            // 
+				            alert('a')
+				        }
+				}
+				不太好,给父元素绑定
+				 */
+				let u1 = document.getElementById('u1');
+				let btn = document.getElementById('btn01');
+				btn.onclick = function() {
+					// alert('ss')
+					let li = document.createElement('li');
+					li.innerHTML = `<a href="javascript:; " class="link">超链接1</a>`;
+					u1.appendChild(li);
+				}
+				/* 
+				事件的委派,将事件统一绑定给共同的祖先元素,
+				然后会一直冒泡到祖先元素上利用了冒泡
+				 */
+				// 给父元素绑定就可以
+				u1.onclick = function(eve) {
+					let reg = /link/g;
+					if (reg.test(eve.target.className)) {
+						alert(eve.target.innerHTML);
+					}
+				}
+				// u1.onclick = function(eve){
+                // if(eve.target.className ==="link"){
+                //     //class="link link2 ..."的时候,不会触发
+                //     // 小隐患,正则表达式来解决
+                //     alert('祖先');
+                // }
 
+				// if(eve.target.className ==="link"){
+				/* 如果触发事件的对象是期望的元素,则执行,否则不执行 */
+				// target   返回触发此事件的元素
+				//target    event中的target表示触发此事件的对象
 
-            上  利用了冒泡
-             */
-            u1.onclick = function(eve){
-                if(eve.target.className ==="link"){
-                    //class="link link2 ..."的时候,不会触发
-                    // 小隐患,正则表达式来解决
-                    alert('祖先');
-                }
-                /* 如果触发事件的对象是期望的元素,则执行,否则不执行 */
-                // target   返回触发此事件的元素
-                //target    event中的target表示触发此事件的对象
-                
-            }
-        }
-    </script>
-</body>
+			}
+		</script>
+	</body>
 </html>
