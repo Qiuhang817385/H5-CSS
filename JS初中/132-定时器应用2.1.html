@@ -1,0 +1,69 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			#box1 {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				let btn1 = document.getElementById('btn1');
+				let box1 = document.getElementById('box1');
+				let btn2 = document.getElementById('btn2');
+				btn1.onclick = function() {
+					move(box1, 800, 10);
+				}
+				btn2.onclick = function() {
+					move(box1, 300, 10);
+				}
+
+
+
+				let numTimer;
+
+				function move(obj, target, speed) {
+					clearInterval(numTimer);
+					// 获取当前的,当前的仅仅是为了判断速度
+					let current = parseInt(getStyle(obj, 'left'));
+					speed = current < target ? speed : -speed;
+					numTimer = setInterval(function() {
+						let oldVal = parseInt(getStyle(obj, 'left'));
+						let newVal = oldVal + speed;
+						if((speed>0&&newVal>target)||(speed<0&&newVal<target)){
+							newVal = target;
+						}
+						obj.style.left = newVal+'px';
+						if(newVal == target){
+							clearInterval(numTimer);
+						}
+
+					},30)
+				}
+			}
+			function getStyle(obj,name){
+				return getComputedStyle(obj,null)[name];
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn1">点击以后box1向右移动</button>
+		<button id="btn2">向左移动</button>
+		<div id="box1"></div>
+		<span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 800px"></span>
+		<span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 300px"></span>
+	</body>
+</html>

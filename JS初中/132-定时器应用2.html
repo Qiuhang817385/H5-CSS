@@ -23,7 +23,7 @@
             //获取元素
             let btn1 = document.getElementById('btn1');
             let box1 = document.getElementById('box1');
-            let btn2 = document.getElementById('btn1');
+            let btn2 = document.getElementById('btn2');
 
             btn1.onclick = function(){
                 move(box1,800,10,'left');
@@ -59,12 +59,7 @@
                     if((speed>0&&newVal>target)||(speed<0&&newVal<target)){
                         newVal = target;
                     }
-                    
                         obj.style.left = newVal +'px';
-                  
-                   
-                       
-                   
                     if(newVal==target){
                         clearInterval(numTimer);
                     }

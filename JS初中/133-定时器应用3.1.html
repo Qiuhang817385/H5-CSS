@@ -1,0 +1,136 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			#box1 {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				/* left: -100px; */
+				left: 100px;
+				top: 200;
+				transition: all 5s;
+			}
+
+			#box2 {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				right: -100px;
+				top: 200;
+			}
+
+			#box3 {
+				width: 100px;
+				height: 100px;
+				background: yellow;
+				position: absolute;
+				left: 400px;
+				top: -100px;
+			}
+
+			#box4 {
+				width: 100px;
+				height: 100px;
+				background: yellow;
+				position: absolute;
+				right: 400px;
+				top: -100px
+			}
+
+			#div {
+				position: absolute;
+				top: 300px;
+				height: 900px;
+				width: 100%;
+				background-color: #006666;
+				overflow: hidden;
+			}
+		</style>
+		<script>
+			/* 
+        知识点:
+        1.拓展了函数,传入attr来判断left top height  width
+        2.拓展了参数,传入一个回调函数,  拓展了可能
+        3.函数方法的重载,传入4个参数和传入5个参数一样.
+        callback&&callback();
+        4.封装方法,到tools.js里面
+        */
+			window.onload = function() {
+				let btn1 = document.getElementById('btn1');
+				let btn2 = document.getElementById('btn2');
+				let box1 = document.getElementById('box1');
+				let btn3 = document.getElementById('btn3');
+				let btn4 = document.getElementById('btn4');
+				let box3 = document.getElementById('box3');
+				// btn1.onclick = function() {
+				// }
+				box1.style.opacity = 0;
+				window.onscroll = function() {
+					let top = document.body.scrollTop || document.documentElement.scrollTop;
+					if (top > 300) {
+						
+						move(box1, 'left', 400, 20);
+						move(box2, 'right', 400, 20);
+						move(box3, 'top', 400, 20);
+						move(box4, 'top', 400, 20);
+					}
+				}
+
+				function move(obj, attr, target, speed, callback) {
+					// 上面是为了获取当前的值
+					box1.style.opacity = 1;
+					clearInterval(obj.numTimer);
+					let currentStyle = parseInt(getStyle(obj, attr));
+					speed = currentStyle < target ? speed : -speed;
+					// 下面是为了定时器来循环获取值
+					// 
+					obj.numTimer = setInterval(function() {
+						let oldVal = parseInt(getStyle(obj, attr));
+						let newVal = oldVal + speed;
+						if ((speed > 0 && newVal > target) || (speed < 0 && newVal < target)) {
+							newVal = target;
+						}
+						obj.style[attr] = newVal + 'px';
+						if (newVal == target) {
+							clearInterval(obj.numTimer);
+							callback && callback();
+						}
+					}, 30)
+				}
+
+				function getStyle(obj, name) {
+					return getComputedStyle(obj, null)[name];
+				}
+
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn1">点击以后box1向右移动</button>
+		<button id="btn2">向左移动</button>
+		<button id="btn3">点击以后box3向右移动</button>
+		<button id="btn4">测试top</button>
+		<button id="btn5">测试height</button>
+		<button id="btn6">测试width</button>
+		<div id="div">
+
+			<div id="box1"></div>
+			<div id="box2"></div>
+			<div id="box3"></div>
+			<div id="box4"></div>
+		</div>
+		<span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 400px"></span>
+		<span style="display: block;width: 0;height: 1000;border: 1px solid rgba(6, 230, 6, 1);position: absolute;top: 0;left: 948px"></span>
+	</body>
+</html>

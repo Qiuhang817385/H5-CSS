@@ -42,16 +42,6 @@
             z-index: 5;
             position: absolute;
             bottom: 15px;
-            /* left: 50%; */
-            /* 设置left的值
-                outer   宽520
-                nav 25*5    125
-                520-125 = 395
-
-                395/2 = 927.5
-             */
-             
-
         }
         #navDiv > a{
             /* display: inline-block; */
@@ -71,26 +61,55 @@
             background-color: black;
         }
     </style>
+    <script src="../js/tools.js"></script>
     <script>
         window.onload = function(){
-            //设置imgList的宽度
             let imgList = document.getElementById('imgList');
-            // console.log(imgList.childElementCount);//5
-            //let arr = document.getelementsbyTargetName('img')
-            //  imgList.childElementCount === arr.length
-            // console.log(imgList.childNodes);
+            let imgArr = document.getElementsByTagName('img');
             imgList.style.width = (imgList.childElementCount*520)+'px';
-            /* 设置导航按钮居中 */
             let navDiv = document.getElementById('navDiv');
-            //获取父元素
             let outer = document.getElementById('outer');
             navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth)/2+'px';
-            // 怎么居中,通过js方式来实现,兄弟元素上面的居中
-            //默认选中第一个
             let index = 0;
             let allA =  document.getElementsByTagName('a');
             allA[index].style.backgroundColor = 'black';
-           
+            for (let i = 0; i < allA.length; i++) {
+                const element = allA[i];
+                element.num = i;
+                element.onclick = function(){
+                    clearInterval(timer);
+                    index = this.num;
+                    move(imgList,'left',-520*index,30,function(){
+                        autoChange()//表明动画执行完毕(end)
+                    })
+                    setA();
+                }
+				
+            }
+            //开启自动切换
+            //优化-同时有两个动画在执行,点击和定时器
+            autoChange();
+            function setA(){
+                if(index>=imgArr.length-1){
+                    index = 0;
+                    imgList.style.left = 0+'px';
+                }
+                for (let i = 0; i < allA.length; i++) {//遍历所有的a并且把背景设置成红色
+                    const element = allA[i];
+                    element.style.backgroundColor ='';
+                }
+                allA[index].style.backgroundColor = 'black';
+            }
+            var timer;
+           function autoChange() {
+                timer = setInterval(function(){
+                    index++;
+                    index = index % imgArr.length ;
+                    move(imgList,"left",-520*index,20,function(){
+                        setA();
+                    });
+                }, 2000);
+           }
         }
     </script>
 </head>
@@ -101,15 +120,16 @@
             <li><img src="../img/2.jpg"/></li>
             <li><img src="../img/3.jpg"/></li>
             <li><img src="../img/4.jpg"/></li>
-            <li><img src="../img/5.jpg"/></li>
+            <li><img src="../img/5.jpg"/></li> <li><img src="../img/5.jpg"/></li>
+            <li><img src="../img/1.jpg"/></li>
         </ul>
         <!-- 创建导航按钮 -->
         <div id="navDiv">
-            <a href="javascript:''">a</a>
-            <a href="javascript:''">a</a>
-            <a href="javascript:''">a</a>
-            <a href="javascript:''">a</a>
-            <a href="javascript:''">a</a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
         </div>
     </div>
 </body>

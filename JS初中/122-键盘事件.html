@@ -1,11 +1,11 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script>
-        window.onload = function(){
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<script>
+			window.onload = function(){
             //  onkeydown
             //     onkeyup
 
@@ -19,7 +19,7 @@
                 //一直不放  会一直触发          
                 //  -第一次会稍微卡一下,防止误操作
                 console.log(event.keyCode);
-
+				console.log(event.ctrlKey);
                 // 判断81   q 字符  是否被按下
                 if(event.keyCode === 81){
                     console.log('q被按下');
@@ -42,7 +42,7 @@
                 console.log(event.keyCode);
                 //在文本框输入内容属于onkeydown的默认行为,如果取消默认行为,那么文本不会写到文本框内
                 // return false     取消默认行为
-
+				console.log(event.ctrlKey);			
                 // 用处 使文本框不能输入数字
                 if(event.keyCode>=48&&event.keyCode<=57){
                     return false;
@@ -50,8 +50,8 @@
             }
         }
     </script>
-</head>
-<body>
-    <input type="text">
-</body>
+	</head>
+	<body>
+		<input type="text">
+	</body>
 </html>

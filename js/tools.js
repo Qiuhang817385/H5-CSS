@@ -27,9 +27,11 @@ function move(obj, attr, target, speed, callback) {
 	obj.timer = setInterval(function() {
 
 		//获取box1的原来的left值
+		// 										修改1百分比
 		var oldValue = parseInt(getStyle(obj, attr));
 
 		//在旧值的基础上增加
+		// 										修改2百分比
 		var newValue = oldValue + speed;
 
 		//判断newValue是否大于800

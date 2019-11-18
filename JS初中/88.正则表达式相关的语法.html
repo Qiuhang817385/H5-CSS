@@ -8,6 +8,13 @@
 </head>
 <body>
     <script>
+		
+		//\d	数字
+		//\D	非数字
+		//w		单词字符	字母数字下划线
+		//W		非单词字符
+		
+		
         // 创建一个正则表达式检测是否有aaaaa
 
         let reg = /a{5}/
@@ -37,7 +44,8 @@
         // 0或1     ?   == {0,1}
 
 
-
+		//\d	数字
+		//\w	字母
         // 检查是否以a开头
         let reg4 = /^a/;
         console.log(reg4.test("abc"));
@@ -64,7 +72,8 @@
 
         
 
-        let reg8 = /^1[3-9][0-9]{9}$/;
+        // let reg8 = /^1[3-9][0-9]{9}$/;
+        let reg8 = /^1[3-9]\d{9}$/;
 
         console.log(reg8.test(PhoneNumber));
         

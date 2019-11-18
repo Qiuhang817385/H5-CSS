@@ -92,6 +92,7 @@ var playScreenAnimateDone = function(screenCls){
 				
 				element.setAttribute('class',baseCls.replace('_animate_init','_animate_done'));
 			}
+			
 }
 
 window.onload = function(){

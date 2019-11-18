@@ -15,7 +15,6 @@
             background: red;
             position: absolute;
             left: 0;
-			top: 300px;
 
         }
     </style>
@@ -25,30 +24,23 @@
             let btn1 = document.getElementById('btn1');
             let box1 = document.getElementById('box1');
 
-            let numTimer;
-            // btn1.onclick = function(){
-            //     //坑点:防止每次新建出定时器,导致动画越来越快
-               
-            // }
-			
-			window.onscroll = function(){
-				let top = document.body.scrollTop||document.documentElement.scrollTop;
-				if(top>10){
-					clearInterval(numTimer);
-					numTimer = setInterval(function(){
-					    let oldVal = box1.offsetLeft;
-					    let newVal = oldVal+10;
-					    //速度如果不是整数,停不到指定位置
-					    if(newVal>400){
-					        newVal = 400;
-					    }
-					    box1.style.left = newVal +'px';
-					    if(newVal==400){
-					        clearInterval(numTimer);
-					    }
-					},20)
-				}
-			}
+           
+		   btn1.onclick = function(){
+			   clearInterval(numTimer);
+			   numTimer = setInterval(function(){
+				   let oldVal = box1.offsetLeft;
+				   let newVal = oldVal+10;
+				   if(newVal>800){
+					   newVal = 800;
+				   }
+				   box1.style.left = newVal +'px';
+				   if(newVal === 800){
+					   clearInterval(numTimer);
+				   }
+			   })
+		   }
+		   
+		   
             btn2.onclick = function(){
                 //坑点:防止每次新建出定时器,导致动画越来越快
                 clearInterval(numTimer);
@@ -68,6 +60,7 @@
                     }
                 })
             }
+            
         }
     </script>
 </head>

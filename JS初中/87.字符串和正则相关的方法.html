@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+	</head>
 
-<body>
-    <!-- body 
+	<body>
+		<!-- body 
         4个方法
         search
         match
@@ -17,73 +17,84 @@
         split
         
     -->
-    <!-- 
+		<!-- 
         根据任意字母来拆分
         split()
         可以传递一个正则表达式来当做参数
         这样方法根据正则来拆分字符串
      -->
-    <script>
-        let str = "1a2b3c4d5e6f7g";
-        let result = str.split(/[A-z]/);
-        // 即使不指定全局匹配,也会全部拆分
-        console.log(result);
+		<script>
+			let str = "1a2b3c4d5e6f7g";
+			let result = str.split(/[A-z]/);
+			// 即使不指定全局匹配,也会全部拆分
+			console.log(result);
 
 
 
-        // search   检索与正则表达式相匹配的值
-        /* 
-            search()
-            // 不能全局匹配,只能第一个,即使设置也没有用
-            可以搜索字符串当中是否含有指定的内容
-         */
-        let str2 = "hello abc helloaec abcde world dcsd";
-        result2 = str2.search("abc");
-        console.log(result2);
-        // 搜索字符串当中是否含有指定的内容
-        // 如果有,返回第一个的索引,如果没有,返回-1
-        // 接受一个正则表达式作为参数,然后根据正则表达式检索字符串
+			// search   检索与正则表达式相匹配的值
+			/* 
+			    search()
+			    // 不能全局匹配,只能第一个,即使设置也没有用
+			    可以搜索字符串当中是否含有指定的内容
+			 */
+			let str2 = "hello abc helloaec abcde world dcsd";
+			result2 = str2.search("abc");
+			console.log(result2);
+			// 搜索字符串当中是否含有指定的内容
+			// 如果有,返回第一个的索引,如果没有,返回-1
+			// 接受一个正则表达式作为参数,然后根据正则表达式检索字符串
 
-        let result3 =str2.search(/a[bef]c/); 
-        console.log(result3);
-        
+			let result3 = str2.search(/a[bef]c/);
+			console.log(result3);
 
 
-        // match()  根据正则表达式,可以从一个字符串当中将符合条件的内容提取出来
-        // 默认情况下match只会找到第一个符合要求的,找到后就停止检索
-        // 可以设置为全局匹配模式
-        // 可以设置多个匹配模式
-        let str4 = "1a2b3c4d5e6f7g";
-        // let result4 = str4.match(/[A-z]/g);
-        let result4 = str4.match(/[a-z]/ig);
-        // 结果一样
-        // 返回的是一个数组
-        // -match() 会将匹配到的内容封装到一个数组当中返回
-        // 即使可能只有一个
-        
-        console.log(result4);
 
-        
-        // replace
-        /* 
-            可以把字符串当中的内容替换为新的内容
+			// match()  根据正则表达式,可以从一个字符串当中将符合条件的内容提取出来
+			// 默认情况下match只会找到第一个符合要求的,找到后就停止检索
+			// 可以设置为全局匹配模式
+			// 可以设置多个匹配模式
+			let str4 = "1a2b3c4d5e6f7g";
+			// let result4 = str4.match(/[A-z]/g);
+			let result4 = str4.match(/[a-z]/ig);
+			// 结果一样
+			// 返回的是一个数组
+			// match返回的是一个数组
+			//match之后的数组进行遍历
+			// -match() 会将匹配到的内容封装到一个数组当中返回
+			// 即使可能只有一个
 
-         */
-         let str5 = "1a2b3c4d5e6f7g";
-        //  let result5 = str5.replace(第一个被替换的内容,第二个新的内容)
-         let result5 = str5.replace("a","qiuhang");
-         console.log(result5);
-        //  只会替换第一个,所以可以用正则来写
-        // 1,被替换的内容,可以接受一个正则
-        // /a/g
-        
-        // 可以删掉字母
-        let result6 = str5.replace(/[a-z]/ig,"");
-        console.log(result6);
-        
-        
-    </script>
+			console.log(result4);
 
-</body>
+
+			// replace
+			/* 
+			
+			//返回的是一个新的字符串
+			    可以把字符串当中的内容替换为新的内容
+
+			 */
+			let str5 = "1a2b3c4d5e6f7g";
+			//  let result5 = str5.replace(第一个被替换的内容,第二个新的内容)
+			let result5 = str5.replace("a", "qiuhang");
+			console.log(result5);
+			//  只会替换第一个,所以可以用正则来写
+			// 1,被替换的内容,可以接受一个正则
+			// /a/g
+
+			// 可以删掉字母
+			let result6 = str5.replace(/[a-z]/ig, "");
+			console.log(result6);
+
+
+
+
+			// reg.global
+			// 有没有写g或者写i	写了g就是true
+			// 全局
+			// reg.ingnreCase
+			//忽略大小写
+		</script>
+
+	</body>
 
 </html>
